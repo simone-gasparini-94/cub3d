@@ -1,0 +1,11 @@
+NO ./path_to_north
+EA ./path_to_east
+SO ./path_to_south
+WE ./path_to_west
+
+F 255,0,0
+C 0,0,0
+
+1111
+1001
+1111
