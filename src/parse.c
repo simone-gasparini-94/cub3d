@@ -6,7 +6,7 @@
 /*   By: duccello <duccello@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:55:35 by duccello          #+#    #+#             */
-/*   Updated: 2025/12/01 13:10:38 by duccello         ###   ########.fr       */
+/*   Updated: 2025/12/01 15:32:33 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "data.h"
@@ -49,7 +49,7 @@ int	parse(t_data *data, char *file)
 		return (1);
 	}
 	for (int i = 0; i < 4; i++)
-		printf("%d: %s\n", i, data->tex[i].str);
+		printf("%d: %s | %s\n", i, data->tex[i].id, data->tex[i].path);
 	/* if (parse_colors(data, array, len) == 1)
 		return (1);
 	if (parse_map(data, array, len) == 1)

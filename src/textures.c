@@ -12,6 +12,7 @@ int    parse_textures(t_data *data, char **array, ssize_t len)
 {
 	size_t	i;
 	size_t	j;
+	char	**arr;
 
 	i = 0;
 	j = 0;
@@ -20,7 +21,12 @@ int    parse_textures(t_data *data, char **array, ssize_t len)
 		if (j >= CARDINAL_POINTS)
 			break ;
 		if (contains_cardinal(array[i]) == true)
-			data->tex[j++].str = array[i];
+		{
+			arr = ft_split(array[i], ' ');
+			data->tex[j].id = arr[0];
+			data->tex[j].path = arr[1];
+			j++;
+		}
 		i++;
 	}
 	return (0);

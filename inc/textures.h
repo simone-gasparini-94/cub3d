@@ -3,7 +3,6 @@
 
 typedef struct s_tex
 {
-    char    *str;
     char    *id;
     char    *path;
 } t_tex;
