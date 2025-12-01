@@ -6,12 +6,13 @@
 /*   By: duccello <duccello@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:55:35 by duccello          #+#    #+#             */
-/*   Updated: 2025/12/01 15:32:33 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/01 15:56:57 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "data.h"
 #include "get_next_line.h"
 #include "libft.h"
+#include "ft_fprintf.h"
 #include "parse.h"
 #include "textures.h"
 #include <fcntl.h>
@@ -20,6 +21,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+static bool		check_extension(char *file);
 static ssize_t	find_file_len(char *path);
 static void		populate_array(char **array, char *path, ssize_t len);
 
@@ -29,6 +31,11 @@ int	parse(t_data *data, char *file)
 	ssize_t	len;
 	char	**array;
 
+	if (check_extension(file) == false)
+	{
+		ft_fprintf(STDERR_FILENO, "ERROR: Wrong extension\n");
+		return (1);
+	}
 	path = ft_strjoin("assets/", file);
 	if (!path)
 	{
@@ -44,17 +51,23 @@ int	parse(t_data *data, char *file)
 	}
 	populate_array(array, path, len);
 	if (parse_textures(data, array, len) == 1)
-	{
 		printf("Hi\n");
-		return (1);
-	}
-	for (int i = 0; i < 4; i++)
-		printf("%d: %s | %s\n", i, data->tex[i].id, data->tex[i].path);
 	/* if (parse_colors(data, array, len) == 1)
 		return (1);
 	if (parse_map(data, array, len) == 1)
 		return (1); */
 	return (0);
+}
+
+static bool		check_extension(char *file)
+{
+	size_t	len;
+	
+	if (file == NULL)
+		return (false);	
+	len = ft_strlen(file);
+	return (file[len - 4] == '.' && file[len - 3] == 'c'
+			&& file[len - 2] == 'u' && file[len - 1] == 'b');
 }
 
 static ssize_t	find_file_len(char *path)

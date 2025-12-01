@@ -23,8 +23,8 @@ int    parse_textures(t_data *data, char **array, ssize_t len)
 		if (contains_cardinal(array[i]) == true)
 		{
 			arr = ft_split(array[i], ' ');
-			data->tex[j].id = arr[0];
-			data->tex[j].path = arr[1];
+			data->tex[j].id = ft_strdup(arr[0]);
+			data->tex[j].path = ft_strdup(arr[1]);
 			j++;
 		}
 		i++;
@@ -39,4 +39,3 @@ static bool	contains_cardinal(char *str)
 		|| ft_strncmp(str, "WE ", 3) == 0
 		|| ft_strncmp(str, "EA ", 3) == 0);
 }
-	
