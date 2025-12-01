@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdbool.h>
+#include <sys/types.h>
+#include "map.h"
 
 bool	wall_check(t_map *map)
 {
