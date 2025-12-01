@@ -1,12 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/01 17:49:42 by sgaspari          #+#    #+#             */
+/*   Updated: 2025/12/01 17:50:19 by sgaspari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PARSE_H
 #define PARSE_H
 
 #include <stdbool.h>
 #include <stdio.h>
 
-int	parse(t_data *data, char *file);
-int    parse_textures(t_data *data, char **array, ssize_t len);
-bool	wall_check(t_map *map);
-bool	player_check(t_map *map);
+int		parse(t_data *data, char *file);
 
 #endif

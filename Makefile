@@ -5,9 +5,10 @@ INCS		=	-Iinc											\
 SRC_DIR		=	src
 OBJ_DIR		=	build
 SRCS		=	main.c											\
+				color.c											\
+				data.c											\
 				parse.c											\
-				textures.c										\
-				wall_check.c
+				texture.c						
 SRC_FILES	=	$(addprefix $(SRC_DIR)/, $(SRCS))
 OBJS		=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
 LIBFT		=	-Llibft -lft

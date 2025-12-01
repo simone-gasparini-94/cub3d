@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:55:43 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/01 15:55:46 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/01 17:17:34 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,9 @@ int	main(int argc, char *argv[])
 {
 	t_data	*data;
 
-	data = malloc(sizeof(t_data));
-	if (!data)
-	{
-		perror("Malloc");
+	data = create_data();
+	if (data == NULL)
 		return (1);
-	}
 	if (argc != 2)
 	{
 		ft_fprintf(STDERR_FILENO, "ERROR: Invalid number of arguments.\n");

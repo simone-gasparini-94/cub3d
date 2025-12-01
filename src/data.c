@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/01 17:06:35 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/01 17:52:02 by sgaspari         ###   ########.fr       */
+/*   Created: 2025/12/01 17:52:47 by sgaspari          #+#    #+#             */
+/*   Updated: 2025/12/01 17:53:10 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#include "data.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-#include <stdbool.h>
-
-typedef struct s_map
+t_data	*create_data(void)
 {
-    char    **matrix;
-	bool	parsed;
-}   t_map;
+	t_data *data;
 
-#endif
+	data = calloc(1, sizeof(t_data));
+	if (data == NULL)
+	{
+		perror("malloc");
+		return (NULL);
+	}
+	return (data);
+}
