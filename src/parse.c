@@ -6,7 +6,7 @@
 /*   By: duccello <duccello@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:55:35 by duccello          #+#    #+#             */
-/*   Updated: 2025/12/02 12:19:17 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:13:50 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ int	parse(t_data *data, char *file)
 		ft_fprintf(STDERR_FILENO, "ERROR: Invalid file\n");
 		return (1);
 	}
+	printf("Map has %zu rows\n", data->map.rows);
+	for (size_t i = 0; i < data->map.rows; i++)
+		printf("%s", data->map.matrix[i]);
 	free(file_with_path);
 	return (0);
 }
@@ -54,7 +57,7 @@ static bool		check_extension(char *file)
 	if (file == NULL)
 		return (false);	
 	len = ft_strlen(file);
-	return (file[len - 4] == '.' && file[len - 3] == 'c'
+	return (len >= 4 && file[len - 4] == '.' && file[len - 3] == 'c'
 			&& file[len - 2] == 'u' && file[len - 1] == 'b');
 }
 
@@ -101,7 +104,8 @@ static int		parse_file(t_data *data, char *file)
 			free(line);
 			return (1);
 		}
-		free(line);
+		if (line != NULL)
+			free(line);
 	}
 	close(fd);
 	return (0);

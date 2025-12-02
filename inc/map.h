@@ -6,13 +6,14 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:06:35 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/02 11:40:09 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/02 13:44:41 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 # define MAP_H
 
+#include <sys/types.h>
 #include <stdbool.h>
 
 typedef struct s_node
@@ -23,7 +24,8 @@ typedef struct s_node
 
 typedef struct s_map
 {
-    t_node	*list;
+    char	**matrix;
+	size_t	rows;
 	bool	parsed;
 }   t_map;
 
