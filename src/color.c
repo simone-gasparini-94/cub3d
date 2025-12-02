@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:10:50 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/01 18:48:18 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/02 10:12:13 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "libft.h"
 #include <stdio.h>
 #include <stdbool.h>
+
+static void	fill_rgb_elements(t_data *data, char **arr, t_sur sur);
 
 bool	is_color(t_data *data, char *s)
 {
@@ -29,26 +31,25 @@ bool	is_color(t_data *data, char *s)
 void	parse_color(t_data *data, char *s)
 {
 	char	**arr;
+
+	arr = ft_split(s, ' ');
+	if (ft_strncmp("C", arr[0], 2) == 0)
+		fill_rgb_elements(data, arr, C);
+	else if (ft_strncmp("F", arr[0], 2) == 0)
+		fill_rgb_elements(data, arr, F);
+	if (data->rgb[C].parsed == true
+			&& data->tex[F].parsed == true)
+		data->rgb_parsed = true;
+}
+
+static void	fill_rgb_elements(t_data *data, char **arr, t_sur sur)
+{
 	char	**colors;
 
-	// F 255,0,0
-	arr = ft_split(s, ' ');
-	// trim
 	colors = ft_split(arr[1], ',');
-	if (ft_strncmp("C", arr[0], 2) == 0)
-	{
-		data->rgb[C].id = arr[0];
-		data->rgb[C].red = ft_atoi(colors[0]);
-		data->rgb[C].green = ft_atoi(colors[1]);
-		data->rgb[C].blue = ft_atoi(colors[2]);
-		data->rgb[C].parsed = true;
-	}
-	else if (ft_strncmp("F", arr[0], 2) == 0)
-	{
-		data->rgb[F].id = arr[0];
-		data->rgb[F].red = ft_atoi(colors[0]);
-		data->rgb[F].green = ft_atoi(colors[1]);
-		data->rgb[F].blue = ft_atoi(colors[2]);
-		data->rgb[F].parsed = true;
-	}
+	data->rgb[sur].id = arr[0];
+	data->rgb[sur].red = ft_atoi(colors[0]);
+	data->rgb[sur].green = ft_atoi(colors[1]);
+	data->rgb[sur].blue = ft_atoi(colors[2]);
+	data->rgb[sur].parsed = true;
 }
