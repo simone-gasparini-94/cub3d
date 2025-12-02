@@ -6,12 +6,13 @@
 /*   By: duccello <duccello@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:55:35 by duccello          #+#    #+#             */
-/*   Updated: 2025/12/02 09:47:39 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/02 11:52:01 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
 #include "data.h"
+#include "map.h"
 #include "get_next_line.h"
 #include "libft.h"
 #include "ft_fprintf.h"
@@ -42,6 +43,8 @@ int	parse(t_data *data, char *file)
 		ft_fprintf(STDERR_FILENO, "ERROR: Invalid file\n");
 		return (1);
 	}
+	for (t_node *curr = data->map.list; curr != NULL; curr = curr->next)
+		printf("%s\n", curr->s);
 	return (0);
 }
 
@@ -84,6 +87,14 @@ static int		parse_file(t_data *data, char *file)
 			parse_texture(data, line);
 		else if (is_color(data, line) == true)
 			parse_color(data, line);
+		else if (is_map(data, line) == true)
+		{
+			if (parse_map(data, line, fd) == 1)
+			{
+				free(line);
+				return (1);
+			}
+		}
 		else if (line[0] == '\n' || line[0] == '\0')
 			;
 		else
