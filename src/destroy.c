@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/01 15:55:43 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/02 12:28:30 by sgaspari         ###   ########.fr       */
+/*   Created: 2025/12/02 12:17:53 by sgaspari          #+#    #+#             */
+/*   Updated: 2025/12/02 12:29:48 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
-#include "destroy.h"
-#include "ft_fprintf.h"
-#include "parse.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "stdlib.h"
 
-int	main(int argc, char *argv[])
+void	destroy_data(t_data *data)
 {
-	t_data	*data;
+	(void)data;
+}
 
-	data = create_data();
-	if (data == NULL)
-		return (1);
-	if (argc != 2)
+void	destroy_array_str(char **arr)
+{
+	size_t	i;
+
+	i = 0;
+	while (arr[i] != NULL)
 	{
-		ft_fprintf(STDERR_FILENO, "ERROR: Invalid number of arguments.\n");
-		return (1);
+		free(arr[i]);
+		i++;
 	}
-	if (parse(data, argv[1]) != 1)
-	{
-		// interpret();
-		// clean();
-	}
-	destroy_data(data);
-	return (0);
+	free(arr);
 }

@@ -6,12 +6,13 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:10:50 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/02 10:12:13 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/02 12:34:36 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
 #include "data.h"
+#include "destroy.h"
 #include "libft.h"
 #include <stdio.h>
 #include <stdbool.h>
@@ -40,6 +41,7 @@ void	parse_color(t_data *data, char *s)
 	if (data->rgb[C].parsed == true
 			&& data->tex[F].parsed == true)
 		data->rgb_parsed = true;
+	destroy_array_str(arr);
 }
 
 static void	fill_rgb_elements(t_data *data, char **arr, t_sur sur)
@@ -52,4 +54,5 @@ static void	fill_rgb_elements(t_data *data, char **arr, t_sur sur)
 	data->rgb[sur].green = ft_atoi(colors[1]);
 	data->rgb[sur].blue = ft_atoi(colors[2]);
 	data->rgb[sur].parsed = true;
+	destroy_array_str(colors);
 }

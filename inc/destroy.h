@@ -1,0 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   destroy.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/02 12:25:45 by sgaspari          #+#    #+#             */
+/*   Updated: 2025/12/02 12:29:03 by sgaspari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef DESTROY_H
+# define DESTROY_H
+
+typedef struct s_data t_data;
+
+void	destroy_data(t_data *data);
+void	destroy_array_str(char **arr);
+
+#endif

@@ -7,6 +7,7 @@ OBJ_DIR		=	build
 SRCS		=	main.c											\
 				color.c											\
 				data.c											\
+				destroy.c										\
 				map.c											\
 				parse.c											\
 				texture.c						

@@ -6,12 +6,13 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:22:43 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/02 10:01:33 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/02 12:25:25 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture.h"
 #include "data.h"
+#include "destroy.h"
 #include "libft.h"
 #include <stdbool.h>
 #include <sys/types.h>
@@ -50,11 +51,12 @@ void	parse_texture(t_data *data, char *s)
 			&& data->tex[EA].parsed == true
 			&& data->tex[WE].parsed == true)
 		data->tex_parsed = true;
+	destroy_array_str(arr);
 }
 
 static void	fill_tex_elements(t_data *data, char **arr, t_card card)
 {
-	data->tex[card].id = arr[0];
-	data->tex[card].path = arr[1];
+	data->tex[card].id = ft_strdup(arr[0]);
+	data->tex[card].path = ft_strdup(arr[1]);
 	data->tex[card].parsed = true;
 }
