@@ -6,11 +6,12 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 10:17:08 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/02 14:34:44 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:36:14 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
+#include "destroy.h"
 #include "map.h"
 #include "libft.h"
 #include "get_next_line.h"
@@ -62,6 +63,7 @@ int		parse_map(t_data *data, char *s, int fd)
 	}
 	data->map_parsed = true;
 	convert_list_to_matrix(data, head);
+	destroy_list(head);
 	return (ret);
 }
 
