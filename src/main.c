@@ -31,6 +31,7 @@ int	main(int argc, char *argv[])
 	}
 	if (parse(data, argv[1]) != 1)
 	{
+		iniate_mlx(data);
 		// interpret();
 		// clean();
 	}
