@@ -6,7 +6,7 @@
 /*   By: duccello <duccello@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:55:35 by duccello          #+#    #+#             */
-/*   Updated: 2025/12/02 14:32:46 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:57:54 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 static bool		check_extension(char *file);
 static char		*add_path_to_file(char *s);
 static int		parse_file(t_data *data, char *file);
+static int		parse_line(t_data *data, char *line, int fd);
 
 int	parse(t_data *data, char *file)
 {
@@ -71,8 +72,8 @@ static char		*add_path_to_file(char *s)
 
 static int		parse_file(t_data *data, char *file)
 {
-	char	*line;
 	int		fd;
+	char	*line;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
@@ -85,25 +86,28 @@ static int		parse_file(t_data *data, char *file)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (is_texture(data, line) == true)
-			parse_texture(data, line);
-		else if (is_color(data, line) == true)
-			parse_color(data, line);
-		else if (is_map(data, line) == true)
-		{
-			if (parse_map(data, line, fd) == 1)
-				return (1);
-		}
-		else if (line[0] == '\n' || line[0] == '\0')
-			;
-		else
+		if (parse_line(data, line, fd) == 1)
 		{
 			free(line);
 			return (1);
 		}
-		if (line != NULL)
-			free(line);
+		free(line);
 	}
 	close(fd);
 	return (0);
 }
+
+static	int		parse_line(t_data *data, char *line, int fd)
+{
+	if (is_texture(data, line) == true)
+		return (parse_texture(data, line));
+	else if (is_color(data, line) == true)
+		return (parse_color(data, line));
+	else if (is_map(data, line) == true)
+		return (parse_map(data, line, fd));
+	else if (line[0] == '\n' || line[0] == '\0')
+		return (0);
+	else
+		return (1);
+}
+

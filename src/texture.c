@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:22:43 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/02 12:25:25 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:45:12 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ bool	is_texture(t_data *data, char *s)
 		return (false);
 }
 
-void	parse_texture(t_data *data, char *s)
+int		parse_texture(t_data *data, char *s)
 {
 	char	**arr;
 
 	arr = ft_split(s, ' ');
+	if (arr[0] == NULL || arr[1] == NULL || arr[2] != NULL)
+		return (1);
 	if (ft_strncmp("NO", arr[0], 3) == 0)
 		fill_tex_elements(data, arr, NO);
 	else if (ft_strncmp("SO", arr[0], 3) == 0)
@@ -52,6 +54,7 @@ void	parse_texture(t_data *data, char *s)
 			&& data->tex[WE].parsed == true)
 		data->tex_parsed = true;
 	destroy_array_str(arr);
+	return (0);
 }
 
 static void	fill_tex_elements(t_data *data, char **arr, t_card card)
