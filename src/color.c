@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:10:50 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/02 14:46:01 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/02 15:52:22 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-static void	fill_rgb_elements(t_data *data, char **arr, t_sur sur);
+static int	fill_rgb_elements(t_data *data, char **arr, t_sur sur);
+static bool	are_color_values_valid(char **arr);
+static bool	contains_only_digits(char *s);
 
 bool	is_color(t_data *data, char *s)
 {
@@ -31,31 +33,72 @@ bool	is_color(t_data *data, char *s)
 
 int	parse_color(t_data *data, char *s)
 {
+	int		ret;
 	char	**arr;
 
 	arr = ft_split(s, ' ');
+	ret = 1;
 	if (arr[0] == NULL || arr[1] == NULL || arr[2] != NULL)
 		return (1);
 	if (ft_strncmp("C", arr[0], 2) == 0)
-		fill_rgb_elements(data, arr, C);
+		ret = fill_rgb_elements(data, arr, C);
 	else if (ft_strncmp("F", arr[0], 2) == 0)
-		fill_rgb_elements(data, arr, F);
+		ret = fill_rgb_elements(data, arr, F);
 	if (data->rgb[C].parsed == true
 			&& data->tex[F].parsed == true)
 		data->rgb_parsed = true;
 	destroy_array_str(arr);
-	return (0);
+	return (ret);
 }
 
-static void	fill_rgb_elements(t_data *data, char **arr, t_sur sur)
+static int	fill_rgb_elements(t_data *data, char **arr, t_sur sur)
 {
 	char	**colors;
 
 	colors = ft_split(arr[1], ',');
 	data->rgb[sur].id = arr[0];
+	if (colors[0] == NULL || colors[1] == NULL
+			|| colors[2] == NULL || colors[3] != NULL)
+	{
+		destroy_array_str(colors);
+		return (1);
+	}
+	if (are_color_values_valid(colors) == false)
+		return (1);
 	data->rgb[sur].red = ft_atoi(colors[0]);
 	data->rgb[sur].green = ft_atoi(colors[1]);
 	data->rgb[sur].blue = ft_atoi(colors[2]);
 	data->rgb[sur].parsed = true;
 	destroy_array_str(colors);
+	return (0);
+}
+
+static bool	are_color_values_valid(char **arr)
+{
+	size_t	i;
+	size_t	n_colors;
+
+	i = 0;
+	n_colors = 3;
+	while (i < n_colors)
+	{
+		if (contains_only_digits(arr[i]) == false)
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+static bool	contains_only_digits(char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0' && s[i] != '\n')
+	{
+		if (ft_isdigit(s[i]) == false)
+			return (false);
+		i++;
+	}
+	return (true);
 }
