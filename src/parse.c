@@ -6,7 +6,7 @@
 /*   By: duccello <duccello@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:55:35 by duccello          #+#    #+#             */
-/*   Updated: 2025/12/02 14:13:50 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:32:46 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,7 @@ static int		parse_file(t_data *data, char *file)
 		else if (is_map(data, line) == true)
 		{
 			if (parse_map(data, line, fd) == 1)
-			{
-				free(line);
 				return (1);
-			}
 		}
 		else if (line[0] == '\n' || line[0] == '\0')
 			;

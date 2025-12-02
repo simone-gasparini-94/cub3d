@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 10:17:08 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/02 14:02:20 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:34:44 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int		parse_map(t_data *data, char *s, int fd)
 			break;
 		}
 		curr->next = create_node(line);
+		free(line);
 		curr = curr->next;
 	}
 	data->map_parsed = true;
@@ -73,7 +74,6 @@ static t_node		*create_node(char *s)
 		return (NULL);
 	node->s = ft_strdup(s);
 	node->next = NULL;
-	free(s);
 	return (node);
 }
 
