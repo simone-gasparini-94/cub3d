@@ -6,7 +6,7 @@
 /*   By: duccello <duccello@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:55:35 by duccello          #+#    #+#             */
-/*   Updated: 2025/12/01 18:50:36 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/02 09:47:39 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ int	parse(t_data *data, char *file)
 		ft_fprintf(STDERR_FILENO, "ERROR: Invalid file\n");
 		return (1);
 	}
-	printf("id: %s | path: %s\n", data->tex[NO].id, data->tex[NO].path);
-	printf("id: %s | r: %d | g: %d | b: %d\n", data->rgb[C].id, data->rgb[C].red, data->rgb[C].green, data->rgb[C].blue);
 	return (0);
 }
 
