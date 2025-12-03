@@ -6,11 +6,10 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:10:50 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/03 15:49:09 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:51:41 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "color.h"
 #include "data.h"
 #include "destroy.h"
 #include "libft.h"

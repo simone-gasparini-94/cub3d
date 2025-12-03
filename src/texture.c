@@ -6,11 +6,10 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:22:43 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/03 15:31:49 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:52:38 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "texture.h"
 #include "data.h"
 #include "destroy.h"
 #include "libft.h"

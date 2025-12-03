@@ -6,13 +6,12 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 12:17:53 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/02 14:06:28 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:51:59 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
-#include "map.h"
-#include "stdlib.h"
+#include <stdlib.h>
 
 void	destroy_data(t_data *data)
 {

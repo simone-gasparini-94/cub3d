@@ -10,6 +10,7 @@ SRCS		=	main.c											\
 				destroy.c										\
 				map.c											\
 				parse.c											\
+				print.c											\
 				texture.c						
 SRC_FILES	=	$(addprefix $(SRC_DIR)/, $(SRCS))
 OBJS		=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))

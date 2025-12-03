@@ -6,13 +6,12 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 10:17:08 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/03 16:28:56 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:52:15 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
 #include "destroy.h"
-#include "map.h"
 #include "libft.h"
 #include "get_next_line.h"
 #include <stdio.h>
