@@ -94,7 +94,7 @@ static bool	contains_only_digits(char *s)
 	size_t	i;
 
 	i = 0;
-	while (s[i] != '\0' && s[i] != '\n')
+	while (s[i] != '\0')
 	{
 		if (ft_isdigit(s[i]) == false)
 			return (false);

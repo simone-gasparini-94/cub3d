@@ -36,6 +36,7 @@ int		parse_map(t_data *data, char *s, int fd)
 	t_node	*head;
 	t_node	*curr;
 	char	*line;
+	char	*tmp;
 	int		ret;
 
 	ret = 0;
@@ -43,10 +44,12 @@ int		parse_map(t_data *data, char *s, int fd)
 	curr = head;
 	while (1)
 	{
-		line = get_next_line(fd);
-		if (line == NULL)
+		tmp = get_next_line(fd);
+		if (tmp == NULL)
 			break;
-		if (line[0] == '\n')
+		line = ft_strtrim(tmp, " \t\n");
+		free(tmp);
+		if (line[0] == '\0')
 		{
 			free(line);
 			break;
@@ -86,7 +89,7 @@ static bool	contains_valid_chars(char *s)
 
 	contains_char = false;
 	i = 0;
-	while (s[i] != '\n' && s[i] != '\0')
+	while (s[i] != '\0')
 	{
 		if (!ft_isspace(s[i])
 				&& s[i] != '0' && s[i] != '1'

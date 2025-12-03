@@ -46,7 +46,7 @@ int	parse(t_data *data, char *file)
 	}
 	printf("Map has %zu rows\n", data->map.rows);
 	for (size_t i = 0; i < data->map.rows; i++)
-		printf("%s", data->map.matrix[i]);
+		printf("%s\n", data->map.matrix[i]);
 	free(file_with_path);
 	return (0);
 }
@@ -74,6 +74,7 @@ static int		parse_file(t_data *data, char *file)
 {
 	int		fd;
 	char	*line;
+	char	*tmp;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
@@ -83,9 +84,11 @@ static int		parse_file(t_data *data, char *file)
 	}
 	while (1)
 	{
-		line = get_next_line(fd);
-		if (line == NULL)
+		tmp = get_next_line(fd);
+		if (tmp == NULL)
 			break ;
+		line = ft_strtrim(tmp, "\n");
+		free(tmp);
 		if (parse_line(data, line, fd) == 1)
 		{
 			free(line);
@@ -105,7 +108,7 @@ static	int		parse_line(t_data *data, char *line, int fd)
 		return (parse_color(data, line));
 	else if (is_map(data, line) == true)
 		return (parse_map(data, line, fd));
-	else if (line[0] == '\n' || line[0] == '\0')
+	else if (line[0] == '\0')
 		return (0);
 	else
 		return (1);
