@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 16:40:01 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/02 10:21:10 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:22:08 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_data
 	bool				map_parsed;
 	bool				tex_parsed;
 	bool				rgb_parsed;
+	size_t				file_line;
 }						t_data;
 
 t_data	*create_data(void);

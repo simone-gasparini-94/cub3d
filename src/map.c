@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 10:17:08 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/02 14:36:14 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:28:56 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		parse_map(t_data *data, char *s, int fd)
 		tmp = get_next_line(fd);
 		if (tmp == NULL)
 			break;
-		line = ft_strtrim(tmp, " \t\n");
+		line = ft_strtrim(tmp, "\n");
 		free(tmp);
 		if (line[0] == '\0')
 		{

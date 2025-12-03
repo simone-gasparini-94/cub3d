@@ -6,7 +6,7 @@
 /*   By: duccello <duccello@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:55:35 by duccello          #+#    #+#             */
-/*   Updated: 2025/12/03 15:44:54 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:39:25 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	parse(t_data *data, char *file)
 	file_with_path = add_path_to_file(file);
 	if (parse_file(data, file_with_path) == 1)
 	{
-		ft_fprintf(STDERR_FILENO, "Error\nInvalid file\n");
+		ft_fprintf(STDERR_FILENO, "Error\nLine %d is invalid\n", data->file_line);
 		return (1);
 	}
 	print_values(data);
@@ -82,6 +82,7 @@ static int		parse_file(t_data *data, char *file)
 		tmp = get_next_line(fd);
 		if (tmp == NULL)
 			break ;
+		data->file_line++;
 		line = ft_strtrim(tmp, "\n");
 		free(tmp);
 		if (parse_line(data, line, fd) == 1)

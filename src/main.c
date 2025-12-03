@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:55:43 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/02 12:28:30 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:26:34 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	if (argc != 2)
 	{
-		ft_fprintf(STDERR_FILENO, "ERROR: Invalid number of arguments.\n");
+		ft_fprintf(STDERR_FILENO, "Error\nInvalid number of arguments.\n");
 		return (1);
 	}
 	if (parse(data, argv[1]) != 1)
