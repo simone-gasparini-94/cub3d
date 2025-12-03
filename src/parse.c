@@ -6,7 +6,7 @@
 /*   By: duccello <duccello@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:55:35 by duccello          #+#    #+#             */
-/*   Updated: 2025/12/03 14:27:41 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/03 15:44:54 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ int	parse(t_data *data, char *file)
 
 	if (check_extension(file) == false)
 	{
-		ft_fprintf(STDERR_FILENO, "ERROR: Wrong extension\n");
+		ft_fprintf(STDERR_FILENO, "Error\nWrong extension\n");
 		return (1);
 	}
 	file_with_path = add_path_to_file(file);
 	if (parse_file(data, file_with_path) == 1)
 	{
-		ft_fprintf(STDERR_FILENO, "ERROR: Invalid file\n");
+		ft_fprintf(STDERR_FILENO, "Error\nInvalid file\n");
 		return (1);
 	}
 	print_values(data);
@@ -76,10 +76,7 @@ static int		parse_file(t_data *data, char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		perror("open");
 		return (1);
-	}
 	while (1)
 	{
 		tmp = get_next_line(fd);

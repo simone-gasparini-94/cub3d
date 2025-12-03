@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:22:43 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/02 15:41:38 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/03 15:31:49 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ int		parse_texture(t_data *data, char *s)
 {
 	char	**arr;
 
-	arr = ft_split(s, ' ');
-	if (arr[0] == NULL || arr[1] == NULL || arr[2] != NULL)
-		return (1);
+	arr = ft_split_once(s, ' ');
 	if (ft_strncmp("NO", arr[0], 3) == 0)
 		fill_tex_elements(data, arr, NO);
 	else if (ft_strncmp("SO", arr[0], 3) == 0)

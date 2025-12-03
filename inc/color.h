@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:50:29 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/02 14:41:42 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/03 15:52:26 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ typedef enum s_sur
 
 typedef struct s_rgb
 {
-	char	*id;
-	uint8_t	red;
-	uint8_t	green;
-	uint8_t	blue;
-	bool	parsed;
+	char		*id;
+	uint16_t	red;
+	uint16_t	green;
+	uint16_t	blue;
+	bool		parsed;
 }			t_rgb;
 
 bool	is_color(t_data *data, char *s);

@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:10:50 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/03 14:24:33 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/03 15:49:09 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ static int	fill_rgb_elements(t_data *data, char **arr, t_sur sur)
 	data->rgb[sur].red = ft_atoi(colors[0]);
 	data->rgb[sur].green = ft_atoi(colors[1]);
 	data->rgb[sur].blue = ft_atoi(colors[2]);
+	if (data->rgb[sur].red > 0xFF || data->rgb[sur].green > 0xFF
+			|| data->rgb[sur].blue > 0xFF)
+		return (1);
 	data->rgb[sur].parsed = true;
 	destroy_array_str(colors);
 	return (0);
@@ -94,6 +97,8 @@ static bool	contains_only_digits(char *s)
 	i = 0;
 	while (s[i] != '\0')
 	{
+		while (ft_isspace(s[i]) == true)
+			i++;
 		if (ft_isdigit(s[i]) == false)
 			return (false);
 		i++;
