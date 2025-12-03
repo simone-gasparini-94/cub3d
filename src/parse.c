@@ -6,7 +6,7 @@
 /*   By: duccello <duccello@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:55:35 by duccello          #+#    #+#             */
-/*   Updated: 2025/12/02 14:57:54 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/03 14:27:41 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ int	parse(t_data *data, char *file)
 		ft_fprintf(STDERR_FILENO, "ERROR: Invalid file\n");
 		return (1);
 	}
-	printf("Map has %zu rows\n", data->map.rows);
-	for (size_t i = 0; i < data->map.rows; i++)
-		printf("%s\n", data->map.matrix[i]);
+	print_values(data);
 	free(file_with_path);
 	return (0);
 }
@@ -114,3 +112,21 @@ static	int		parse_line(t_data *data, char *line, int fd)
 		return (1);
 }
 
+void	print_values(t_data *data)
+{
+	size_t	i;
+
+	printf("\n");
+	i = 0;
+	while (i < data->map.rows)
+		printf("%s\n", data->map.matrix[i++]);
+	printf("\n");
+	printf("%s:\t%d, %d, %d\n", data->rgb[F].id, data->rgb[F].red, data->rgb[F].green, data->rgb[F].blue);
+	printf("%s:\t%d, %d, %d\n", data->rgb[C].id, data->rgb[C].red, data->rgb[C].green, data->rgb[C].blue);
+	printf("\n");
+	printf("%s:\t%s\n", data->tex[NO].id, data->tex[NO].path);
+	printf("%s:\t%s\n", data->tex[SO].id, data->tex[SO].path);
+	printf("%s:\t%s\n", data->tex[EA].id, data->tex[EA].path);
+	printf("%s:\t%s\n", data->tex[WE].id, data->tex[WE].path);
+	printf("\n");
+}

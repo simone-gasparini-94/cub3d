@@ -69,13 +69,3 @@ static void	free_arr(char **s, size_t rows)
 		free(s[i++]);
 	free(s);
 }
-
-int	main(void)
-{
-	char *s = "Hello world";
-	char **arr = ft_split_once(s, ' ');
-	for (int i = 0; arr[i] != NULL; i++)
-		printf("| %s |", arr[i]);
-	printf("\n");
-	return (0);
-}

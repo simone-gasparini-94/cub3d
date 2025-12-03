@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:10:50 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/02 15:52:22 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/03 14:24:33 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,8 @@ int	parse_color(t_data *data, char *s)
 	int		ret;
 	char	**arr;
 
-	arr = ft_split(s, ' ');
+	arr = ft_split_once(s, ' ');
 	ret = 1;
-	if (arr[0] == NULL || arr[1] == NULL || arr[2] != NULL)
-		return (1);
 	if (ft_strncmp("C", arr[0], 2) == 0)
 		ret = fill_rgb_elements(data, arr, C);
 	else if (ft_strncmp("F", arr[0], 2) == 0)
@@ -55,8 +53,8 @@ static int	fill_rgb_elements(t_data *data, char **arr, t_sur sur)
 {
 	char	**colors;
 
+	data->rgb[sur].id = ft_strdup(arr[0]);
 	colors = ft_split(arr[1], ',');
-	data->rgb[sur].id = arr[0];
 	if (colors[0] == NULL || colors[1] == NULL
 			|| colors[2] == NULL || colors[3] != NULL)
 	{
