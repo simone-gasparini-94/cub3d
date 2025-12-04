@@ -13,23 +13,27 @@
 #ifndef MAP_H
 # define MAP_H
 
-#include <sys/types.h>
-#include <stdbool.h>
+# include <stdbool.h>
+# include <sys/types.h>
 
 typedef struct s_node
 {
-	char	*s;
-	struct s_node *next;
-}	t_node;
+	char			*s;
+	struct s_node	*next;
+}					t_node;
 
 typedef struct s_map
 {
-    char	**matrix;
-	size_t	rows;
-	bool	parsed;
-}   t_map;
+	char			**matrix;
+	size_t			rows;
+	bool			parsed;
+	char			player_char;
+	int				y;
+	int				x;
+}					t_map;
 
-bool	is_map(t_data *data, char *s);
-int		parse_map(t_data *data, char *s, int fd);
+bool				is_map(t_data *data, char *s);
+int					parse_map(t_data *data, char *s, int fd);
+bool				map_check(t_data *data);
 
 #endif

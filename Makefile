@@ -9,6 +9,7 @@ SRCS		=	main.c											\
 				data.c											\
 				destroy.c										\
 				map.c											\
+				map_check.c										\
 				parse.c											\
 				print.c											\
 				texture.c						

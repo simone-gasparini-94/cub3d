@@ -36,7 +36,9 @@ int		parse_texture(t_data *data, char *s)
 {
 	char	**arr;
 
-	arr = ft_split_once(s, ' ');
+	arr = ft_split(s, ' ');
+	if (arr == NULL || arr[0] == NULL || arr[1] == NULL || arr[2] != NULL)
+		return (1);
 	if (ft_strncmp("NO", arr[0], 3) == 0)
 		fill_tex_elements(data, arr, NO);
 	else if (ft_strncmp("SO", arr[0], 3) == 0)

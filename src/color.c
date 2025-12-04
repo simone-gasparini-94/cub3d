@@ -92,13 +92,18 @@ static bool	are_color_values_valid(char **arr)
 static bool	contains_only_digits(char *s)
 {
 	size_t	i;
+	size_t  num_digits;
 
 	i = 0;
+	num_digits = 0;
 	while (s[i] != '\0')
 	{
 		while (ft_isspace(s[i]) == true)
 			i++;
 		if (ft_isdigit(s[i]) == false)
+			return (false);
+		num_digits++;
+		if (num_digits > 3)
 			return (false);
 		i++;
 	}

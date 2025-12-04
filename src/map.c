@@ -65,6 +65,8 @@ int		parse_map(t_data *data, char *s, int fd)
 	}
 	data->map_parsed = true;
 	convert_list_to_matrix(data, head);
+	if (map_check(data) == false)
+		ret = 1;
 	destroy_list(head);
 	return (ret);
 }

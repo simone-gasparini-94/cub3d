@@ -41,7 +41,7 @@ int	parse(t_data *data, char *file)
 		ft_fprintf(STDERR_FILENO, "Error\nLine %d is invalid\n", data->file_line);
 		return (1);
 	}
-	print_values(data);
+	//print_values(data);
 	free(file_with_path);
 	return (0);
 }
