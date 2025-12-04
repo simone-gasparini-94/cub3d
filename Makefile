@@ -8,8 +8,11 @@ SRCS		=	main.c											\
 				color.c											\
 				data.c											\
 				destroy.c										\
+				graphic.c										\
+				key_presses.c									\
 				map.c											\
 				map_check.c										\
+				render.c										\
 				str_utils.c										\
 				parse.c											\
 				print.c											\

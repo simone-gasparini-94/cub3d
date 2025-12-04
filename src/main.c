@@ -14,6 +14,10 @@
 #include "destroy.h"
 #include "ft_fprintf.h"
 #include "parse.h"
+#include "graphic.h"
+#include <mlx.h>
+#include "key_presses.h"
+#include <X11/X.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -30,10 +34,14 @@ int	main(int argc, char *argv[])
 		ft_fprintf(STDERR_FILENO, "Error\nInvalid number of arguments.\n");
 		return (1);
 	}
-	if (parse(data, argv[1]) != 1)
+	if (parse(data, argv[1]) == 0 && init_mlx(data) == 0)
 	{
-		// interpret();
-		// clean();
+		mlx_hook(data->grph.win, DestroyNotify, 0, &quit, data);
+		mlx_hook(data->grph.win, KeyPress, KeyPressMask, 
+			&handle_key_presses, data);
+		render(data);
+		mlx_loop(data->grph.mlx);
+		//clean_mlx
 	}
 	destroy_data(data);
 	return (0);

@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 
 #ifndef PARSE_H
-#define PARSE_H
+# define PARSE_H
 
-#include <stdbool.h>
-#include <stdio.h>
+# include <stdbool.h>
+# include <stdio.h>
 
 int		parse(t_data *data, char *file);
 void	print_values(t_data *data);

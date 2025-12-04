@@ -15,6 +15,7 @@
 #include "libft.h"
 #include "ft_fprintf.h"
 #include "parse.h"
+#include "utils.h"
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,7 +23,6 @@
 #include <unistd.h>
 
 static bool		check_extension(char *file);
-static char		*add_path_to_file(char *s);
 static int		parse_file(t_data *data, char *file);
 static int		parse_line(t_data *data, char *line, int fd);
 
@@ -55,14 +55,6 @@ static bool		check_extension(char *file)
 	len = ft_strlen(file);
 	return (len >= 4 && file[len - 4] == '.' && file[len - 3] == 'c'
 			&& file[len - 2] == 'u' && file[len - 1] == 'b');
-}
-
-static char		*add_path_to_file(char *s)
-{
-	char	*new_str;
-
-	new_str = ft_strjoin("assets/", s);
-	return (new_str);
 }
 
 static int		parse_file(t_data *data, char *file)

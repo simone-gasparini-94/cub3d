@@ -16,12 +16,14 @@
 # include "texture.h"
 # include "color.h"
 # include "map.h"
+# include "graphic.h"
 
 typedef struct s_data
 {
 	t_map				map;
 	t_tex				tex[4];
 	t_rgb				rgb[2];
+	t_grph				grph;
 	bool				map_parsed;
 	bool				tex_parsed;
 	bool				rgb_parsed;

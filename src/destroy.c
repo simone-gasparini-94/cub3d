@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "data.h"
+#include <mlx.h>
 #include <stdlib.h>
 
 void	destroy_data(t_data *data)
@@ -47,4 +48,10 @@ void	destroy_list(t_node *head)
 	}
 	free(prev->s);
 	free(prev);
+}
+
+int	quit(t_data *data)
+{
+	mlx_loop_end(data->grph.mlx);
+	return (0);
 }

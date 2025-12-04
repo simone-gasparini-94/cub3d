@@ -30,6 +30,7 @@ typedef struct s_tex
     char    *id;
     char    *path;
 	bool	parsed;
+	void	*texture;
 } 	t_tex;
 
 bool	is_texture(t_data *data, char *s);
