@@ -13,6 +13,7 @@
 #include "data.h"
 #include "destroy.h"
 #include "libft.h"
+#include "utils.h"
 #include <stdbool.h>
 #include <sys/types.h>
 
@@ -20,6 +21,7 @@ static void	fill_tex_elements(t_data *data, char **arr, t_card card);
 
 bool	is_texture(t_data *data, char *s)
 {
+	ft_skip_spaces(&s);
 	if (ft_strncmp("NO ", s, 3) == 0 && data->tex[NO].parsed == false)
 		return (true);
 	else if (ft_strncmp("SO ", s, 3) == 0 && data->tex[SO].parsed == false)

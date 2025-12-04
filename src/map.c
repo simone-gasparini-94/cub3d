@@ -46,6 +46,7 @@ int		parse_map(t_data *data, char *s, int fd)
 		tmp = get_next_line(fd);
 		if (tmp == NULL)
 			break;
+		data->file_line += 1;
 		line = ft_strtrim(tmp, "\n");
 		free(tmp);
 		if (line[0] == '\0')
