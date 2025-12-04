@@ -35,7 +35,7 @@ static bool	flood_check(char **map, int x, int y, int rows)
 		return (true);
 	if (y < 0 || y > rows)
 		return (true);
-	if (map[y][x] == 0)
+	if (map[y][x] == '0' || map[y][x] == player_char)
 	{
 		if (y == 0 || x == 0 || x == cols || y == rows)
 			return (false);
@@ -43,13 +43,18 @@ static bool	flood_check(char **map, int x, int y, int rows)
 			return (false);
 		else if (map[x + 1][y] == ' ' || map[x - 1][y] == ' ')
 			return (false);
+
 	}
-	flood_check(map, x + 1, y, cols);
-	flood_check(map, x - 1, y, cols);
-	flood_check(map, x, y + 1, cols);
-	flood_check(map, x, y - 1, cols);
-	return (true);
+	return (flood_check(map, x + 1, y, cols)
+			&& flood_check(map, x - 1, y, cols)
+			&& flood_check(map, x, y + 1, cols)
+			&& flood_check(map, x, y - 1, cols))
 }
+
+11111111
+10000111
+100001  
+11111111
 
 static bool	player_check(t_map *map)
 {
