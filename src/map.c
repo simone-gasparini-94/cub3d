@@ -117,7 +117,7 @@ static void	convert_list_to_matrix(t_data *data, t_node *head)
 		curr = curr->next;
 	}
 	data->map.rows = i;
-	data->map.matrix = calloc(i, sizeof(char *));
+	data->map.matrix = ft_calloc(i, sizeof(char *));
 	curr = head;
 	i = 0;
 	while (curr != NULL)
