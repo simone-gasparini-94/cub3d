@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:06:35 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/02 13:44:41 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/08 10:06:06 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ typedef struct s_map
 {
 	char			**matrix;
 	size_t			rows;
+	size_t			cols;
 	bool			parsed;
 	char			player_char;
-	int				y;
-	int				x;
+	size_t			player_x;
+	size_t			player_y;
 }					t_map;
 
 bool				is_map(t_data *data, char *s);

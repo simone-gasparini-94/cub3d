@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:48:28 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/03 16:52:32 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/08 10:10:06 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	print_values(t_data *data)
 	printf("%s:\t%s\n", data->tex[EA].id, data->tex[EA].path);
 	printf("%s:\t%s\n", data->tex[WE].id, data->tex[WE].path);
 	printf("\n");
-	printf("player_char: %c player x: %d player y: %d rows: %zu\n",
-		data->map.player_char, data->map.x, data->map.y, data->map.rows);
+	printf("player_char: %c, player x: %zu, player y: %zu, rows: %zu, cols: %zu\n",
+		data->map.player_char, data->map.player_x,
+		data->map.player_y, data->map.rows, data->map.cols);
 }

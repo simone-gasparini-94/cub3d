@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duccello <duccello@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:39:31 by duccello          #+#    #+#             */
-/*   Updated: 2025/12/01 11:52:47 by duccello         ###   ########.fr       */
+/*   Updated: 2025/12/08 10:08:09 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "data.h"
@@ -86,8 +86,8 @@ static bool	player_check(t_data *data)
 					data->file_line += i;
 					return (false);
 				}
-				data->map.x = j;
-				data->map.y = i;
+				data->map.player_x = j;
+				data->map.player_y = i;
 			}
 			j++;
 		}
