@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 10:30:54 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/08 11:03:52 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/08 18:37:41 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,14 @@ typedef struct s_grph
 	t_dir	dir;
 	void	*mlx;
 	void	*win;
-	int		texture_width;
-	int		texture_height;
 	int		window_width;
 	int		window_height;
-	double	tile_width;
-	double	tile_height;
+	int		texture_width;
+	int		texture_height;
+	int		tile_size;
+	int		map_width;
+	int		map_height;
+	int		padding;
 }			t_grph;
 
 int			init_mlx(t_data *data);

@@ -39,6 +39,10 @@ static void	init_graphic_values(t_data *data)
 	data->grph.texture_height = 256;
 	data->grph.window_width = 1080;
 	data->grph.window_height = 720;
+	data->grph.tile_size = 6;
+	data->grph.map_width = data->map.cols * data->grph.tile_size;
+	data->grph.map_height = data->map.rows * data->grph.tile_size;
+	data->grph.padding = data->grph.window_height / 8;
 }
 
 int	init_mlx_images(t_data *data)
