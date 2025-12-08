@@ -2,6 +2,7 @@
 # define UTILS_H
 
 void	ft_skip_spaces(char **s);
-char		*add_path_to_file(char *s);
+char	*add_path_to_file(char *s);
+size_t	ft_arraylen(char **array);
 
 #endif

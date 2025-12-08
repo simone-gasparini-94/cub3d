@@ -14,12 +14,12 @@
 #include "destroy.h"
 #include "graphic.h"
 #include <X11/keysym.h>
+#include <math.h>
+#include <mlx.h>
 #include <stdio.h>
 
 static void	move_forward(t_data *data);
 static void	move_backwards(t_data *data);
-static void	move_left(t_data *data);
-static void	move_right(t_data *data);
 static void	turn_left(t_data *data);
 static void	turn_right(t_data *data);
 
@@ -37,16 +37,6 @@ int	handle_key_presses(int keysym, t_data *data)
 		move_backwards(data);
 		render(data);
 	}
-	if (keysym == XK_A || keysym == XK_a)
-	{
-		move_left(data);
-		render(data);
-	}
-	if (keysym == XK_D || keysym == XK_d)
-	{
-		move_right(data);
-		render(data);
-	}
 	if (keysym == XK_Left)
 	{
 		turn_left(data);
@@ -62,90 +52,47 @@ int	handle_key_presses(int keysym, t_data *data)
 
 static void	move_forward(t_data *data)
 {
-	t_map *map;
+	int	x;
+	int	y;
 
-	map = &data->map;
-	if (map->player_char == 'N' && map->matrix[map->player_y - 1][map->player_x] != '1')
-		data->map.player_y--;
-	else if (map->player_char == 'S' && map->matrix[map->player_y + 1][map->player_x] != '1')
-		data->map.player_y++;
-	else if (map->player_char == 'E' && map->matrix[map->player_y][map->player_x + 1] != '1')
-		data->map.player_x++;
-	else if (map->player_char == 'W' && map->matrix[map->player_y][map->player_x - 1] != '1')
-		data->map.player_x--;
+	x = (int)(data->grph.dir.p_x + cos(data->grph.dir.pa) * MOVEMENT);
+	y = (int)(data->grph.dir.p_y + sin(data->grph.dir.pa) * MOVEMENT);
+	printf("x: %d\n", x);
+	if (data->map.matrix[y][x] != '1')
+	{
+		data->grph.dir.p_x += cos(data->grph.dir.pa) * MOVEMENT;
+		data->grph.dir.p_y += sin(data->grph.dir.pa) * MOVEMENT;
+	}
 }
 
 static void	move_backwards(t_data *data)
 {
-	t_map *map;
+	int	x;
+	int	y;
 
-	map = &data->map;
-	if (map->player_char == 'N' && map->matrix[map->player_y + 1][map->player_x] != '1')
-		data->map.player_y++;
-	else if (map->player_char == 'S' && map->matrix[map->player_y - 1][map->player_x] != '1')
-		data->map.player_y--;
-	else if (map->player_char == 'E' && map->matrix[map->player_y][map->player_x - 1] != '1')
-		data->map.player_x--;
-	else if (map->player_char == 'W' && map->matrix[map->player_y][map->player_x + 1] != '1')
-		data->map.player_x++;
-}
-
-static void	move_left(t_data *data)
-{
-	t_map *map;
-
-	map = &data->map;
-	if (map->player_char == 'N' && map->matrix[map->player_y][map->player_x - 1] != '1')
-		data->map.player_x--;
-	else if (map->player_char == 'S' && map->matrix[map->player_y][map->player_x + 1] != '1')
-		data->map.player_x++;
-	else if (map->player_char == 'E' && map->matrix[map->player_y - 1][map->player_x] != '1')
-		data->map.player_y--;
-	else if (map->player_char == 'W' && map->matrix[map->player_y + 1][map->player_x] != '1')
-		data->map.player_y++;
-}
-
-static void	move_right(t_data *data)
-{
-	t_map *map;
-
-	map = &data->map;
-	if (map->player_char == 'N' && map->matrix[map->player_y][map->player_x + 1] != '1')
-		data->map.player_x++;
-	else if (map->player_char == 'S' && map->matrix[map->player_y][map->player_x - 1] != '1')
-		data->map.player_x--;
-	else if (map->player_char == 'E' && map->matrix[map->player_y + 1][map->player_x] != '1')
-		data->map.player_y++;
-	else if (map->player_char == 'W' && map->matrix[map->player_y - 1][map->player_x] != '1')
-		data->map.player_y--;
-}
-
-static void	turn_left(t_data *data)
-{
-	t_map *map;
-
-	map =&data->map;
-	if (map->player_char == 'N')
-		map->player_char = 'W';
-	else if (map->player_char == 'S')
-		map->player_char = 'E';
-	else if (map->player_char == 'E')
-		map->player_char = 'N';
-	else if (map->player_char == 'W')
-		map->player_char = 'S';
+	x = (int)(data->grph.dir.p_x - cos(data->grph.dir.pa) * MOVEMENT);
+	y = (int)(data->grph.dir.p_y - sin(data->grph.dir.pa) * MOVEMENT);
+	if (data->map.matrix[y][x] != '1')
+	{
+		data->grph.dir.p_x -= cos(data->grph.dir.pa) * MOVEMENT;
+		data->grph.dir.p_y -= sin(data->grph.dir.pa) * MOVEMENT;
+	}
 }
 
 static void	turn_right(t_data *data)
 {
-	t_map *map;
+	data->grph.dir.pa += INCREMENT;
+	if (data->grph.dir.pa >= (2 * PI))
+		data->grph.dir.pa -= (2 * PI);
+	data->grph.dir.x_d = cos(data->grph.dir.pa) * CONSTANT;
+	data->grph.dir.y_d = sin(data->grph.dir.pa) * CONSTANT;
+}
 
-	map =&data->map;
-	if (map->player_char == 'N')
-		map->player_char = 'E';
-	else if (map->player_char == 'S')
-		map->player_char = 'W';
-	else if (map->player_char == 'E')
-		map->player_char = 'S';
-	else if (map->player_char == 'W')
-		map->player_char = 'N';
+static void	turn_left(t_data *data)
+{
+	data->grph.dir.pa -= INCREMENT;
+	if (data->grph.dir.pa < (0 * PI))
+		data->grph.dir.pa += (2 * PI);
+	data->grph.dir.x_d = cos(data->grph.dir.pa) * CONSTANT;
+	data->grph.dir.y_d = sin(data->grph.dir.pa) * CONSTANT;
 }

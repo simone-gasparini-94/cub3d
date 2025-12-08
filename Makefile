@@ -21,12 +21,13 @@ SRC_FILES	=	$(addprefix $(SRC_DIR)/, $(SRCS))
 OBJS		=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
 LIBFT		=	-Llibft -lft
 MLX			= 	-lmlx -lXext -lX11
+MATH		= 	-lm
 NAME		=	cub3D
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-	@$(CC) $(OBJS) $(LIBFT) $(MLX) -o $(NAME)
+	@$(CC) $(OBJS) $(LIBFT) $(MLX) $(MATH) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)

@@ -83,7 +83,7 @@ static int		parse_file(t_data *data, char *file)
 		free(line);
 	}
 	close(fd);
-	return (0);
+	return (ret);
 }
 
 static	int		parse_line(t_data *data, char *line, int fd)

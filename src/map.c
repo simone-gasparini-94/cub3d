@@ -12,25 +12,25 @@
 
 #include "data.h"
 #include "destroy.h"
-#include "libft.h"
 #include "get_next_line.h"
+#include "libft.h"
+#include <math.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
-static bool	contains_valid_chars(char *s);
-static t_node		*create_node(char *s);
-static void	convert_list_to_matrix(t_data *data, t_node *head);
+static bool		contains_valid_chars(char *s);
+static t_node	*create_node(char *s);
+static void		convert_list_to_matrix(t_data *data, t_node *head);
+static void	set_player_angle(t_data *data);
 
 bool	is_map(t_data *data, char *s)
 {
-	return (contains_valid_chars(s)
-			&& data->map_parsed == false
-			&& data->tex_parsed == true
-			&& data->rgb_parsed == true);
+	return (contains_valid_chars(s) && data->map_parsed == false
+		&& data->tex_parsed == true && data->rgb_parsed == true);
 }
 
-int		parse_map(t_data *data, char *s, int fd)
+int	parse_map(t_data *data, char *s, int fd)
 {
 	t_node	*head;
 	t_node	*curr;
@@ -45,20 +45,20 @@ int		parse_map(t_data *data, char *s, int fd)
 	{
 		tmp = get_next_line(fd);
 		if (tmp == NULL)
-			break;
+			break ;
 		data->file_line += 1;
 		line = ft_strtrim(tmp, "\n");
 		free(tmp);
 		if (line[0] == '\0')
 		{
 			free(line);
-			break;
+			break ;
 		}
 		else if (is_map(data, line) == false)
 		{
 			free(line);
 			ret = 1;
-			break;
+			break ;
 		}
 		curr->next = create_node(line);
 		free(line);
@@ -68,11 +68,12 @@ int		parse_map(t_data *data, char *s, int fd)
 	convert_list_to_matrix(data, head);
 	if (map_check(data) == false)
 		ret = 1;
+	set_player_angle(data);
 	destroy_list(head);
 	return (ret);
 }
 
-static t_node		*create_node(char *s)
+static t_node	*create_node(char *s)
 {
 	t_node	*node;
 
@@ -93,14 +94,11 @@ static bool	contains_valid_chars(char *s)
 	i = 0;
 	while (s[i] != '\0')
 	{
-		if (!ft_isspace(s[i])
-				&& s[i] != '0' && s[i] != '1'
-				&& s[i] != 'N' && s[i] != 'S'
-				&& s[i] != 'E' && s[i] != 'W')
+		if (!ft_isspace(s[i]) && s[i] != '0' && s[i] != '1' && s[i] != 'N'
+			&& s[i] != 'S' && s[i] != 'E' && s[i] != 'W')
 			return (false);
-		if (s[i] == '0' || s[i] == '1'
-				|| s[i] == 'N' || s[i] == 'S'
-				|| s[i] == 'E' || s[i] == 'W')
+		if (s[i] == '0' || s[i] == '1' || s[i] == 'N' || s[i] == 'S'
+			|| s[i] == 'E' || s[i] == 'W')
 			contains_char = true;
 		i++;
 	}
@@ -131,4 +129,23 @@ static void	convert_list_to_matrix(t_data *data, t_node *head)
 		curr = curr->next;
 	}
 	data->map.matrix[i] = NULL;
+}
+
+static void	set_player_angle(t_data *data)
+{
+	t_map *map;
+
+	map = &data->map;
+	if (map->player_char == 'N')
+		data->grph.dir.pa = 0;
+	else if (map->player_char == 'S')
+		data->grph.dir.pa = PI;
+	else if (map->player_char == 'E')
+		data->grph.dir.pa = PI / 2;
+	else if (map->player_char == 'W')
+		data->grph.dir.pa = PI * (3 / 2);
+	data->grph.dir.p_x = (double)data->map.player_x;
+	data->grph.dir.p_y = (double)data->map.player_y;
+	data->grph.dir.x_d = cos(data->grph.dir.pa) * CONSTANT;
+	data->grph.dir.y_d = sin(data->grph.dir.pa) * CONSTANT;
 }

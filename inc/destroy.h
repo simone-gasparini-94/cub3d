@@ -17,7 +17,7 @@ typedef struct s_data	t_data;
 typedef struct s_node	t_node;
 
 void					destroy_data(t_data *data);
-void					destroy_array_str(char **arr);
+void					destroy_array_str(char **arr, size_t len);
 void					destroy_list(t_node *head);
 int					quit(t_data *data);
 

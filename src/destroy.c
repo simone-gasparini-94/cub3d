@@ -36,19 +36,20 @@ void	destroy_data(t_data *data)
 			free(data->grph.mlx);
 		}
 		if (data->map.matrix != NULL)
-			destroy_array_str(data->map.matrix);
+			destroy_array_str(data->map.matrix, (size_t)data->map.rows);
 		free(data);
 	}
 }
 
-void	destroy_array_str(char **arr)
+
+void	destroy_array_str(char **arr, size_t len)
 {
 	size_t	i;
 
 	i = 0;
 	if (arr == NULL)
 		return ;
-	while (arr[i] != NULL)
+	while (i < len && arr[i] != NULL)
 	{
 		free(arr[i]);
 		i++;

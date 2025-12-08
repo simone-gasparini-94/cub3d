@@ -13,6 +13,11 @@
 #ifndef GRAPHIC_H
 # define GRAPHIC_H
 
+# define PI 3.14159265359
+# define CONSTANT 5
+# define INCREMENT 0.25
+# define MOVEMENT 0.25
+
 typedef struct s_img
 {
 	void	*img;
@@ -22,9 +27,19 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_dir
+{
+	double	x_d;
+	double	y_d;
+	double	pa;
+	double	p_x;
+	double	p_y;
+}			t_dir;
+
 typedef struct s_grph
 {
 	t_img	img;
+	t_dir	dir;
 	void	*mlx;
 	void	*win;
 	int		texture_width;

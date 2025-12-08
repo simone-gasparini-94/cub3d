@@ -45,24 +45,28 @@ int	parse_color(t_data *data, char *s)
 		ret = fill_rgb_elements(data, arr, F);
 	if (data->rgb[C].parsed == true && data->tex[F].parsed == true)
 		data->rgb_parsed = true;
-	destroy_array_str(arr);
+	destroy_array_str(arr, 2);
 	return (ret);
 }
 
 static int	fill_rgb_elements(t_data *data, char **arr, t_sur sur)
 {
 	char	**colors;
+	size_t	array_len;
 
 	data->rgb[sur].id = ft_strdup(arr[0]);
 	colors = ft_split(arr[1], ',');
-	if (colors[0] == NULL || colors[1] == NULL || colors[2] == NULL
-		|| colors[3] != NULL)
+	array_len = ft_arraylen(colors);
+	if (array_len != 3)
 	{
-		destroy_array_str(colors);
+		destroy_array_str(colors, array_len);
 		return (1);
 	}
 	if (are_color_values_valid(colors) == false)
+	{
+		destroy_array_str(colors, array_len);
 		return (1);
+	}
 	data->rgb[sur].red = ft_atoi(colors[0]);
 	data->rgb[sur].green = ft_atoi(colors[1]);
 	data->rgb[sur].blue = ft_atoi(colors[2]);
@@ -70,7 +74,7 @@ static int	fill_rgb_elements(t_data *data, char **arr, t_sur sur)
 		|| data->rgb[sur].blue > 0xFF)
 		return (1);
 	data->rgb[sur].parsed = true;
-	destroy_array_str(colors);
+	destroy_array_str(colors, array_len);
 	return (0);
 }
 
@@ -102,7 +106,7 @@ static bool	contains_only_digits(char *s)
 		while (ft_isspace(s[i]) == true)
 			i++;
 		if (s[i] == '\0')
-			break ;
+			break;
 		if (ft_isdigit(s[i]) == false)
 			return (false);
 		num_digits++;
