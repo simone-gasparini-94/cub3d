@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 10:17:08 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/08 10:05:28 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/08 16:49:05 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ static void	convert_list_to_matrix(t_data *data, t_node *head)
 		curr = curr->next;
 	}
 	data->map.rows = i;
-	data->map.matrix = ft_calloc(i, sizeof(char *));
+	data->map.matrix = ft_calloc(data->map.rows + 1, sizeof(char *));
 	curr = head;
 	i = 0;
 	while (curr != NULL)
@@ -130,4 +130,5 @@ static void	convert_list_to_matrix(t_data *data, t_node *head)
 			data->map.cols = ft_strlen(curr->s);
 		curr = curr->next;
 	}
+	data->map.matrix[i] = NULL;
 }

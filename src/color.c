@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:10:50 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/03 16:51:41 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/08 16:51:44 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ static bool	contains_only_digits(char *s)
 	{
 		while (ft_isspace(s[i]) == true)
 			i++;
+		if (s[i] == '\0')
+			break ;
 		if (ft_isdigit(s[i]) == false)
 			return (false);
 		num_digits++;

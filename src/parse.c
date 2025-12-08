@@ -6,7 +6,7 @@
 /*   By: duccello <duccello@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:55:35 by duccello          #+#    #+#             */
-/*   Updated: 2025/12/03 16:52:27 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/08 16:47:24 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ int	parse(t_data *data, char *file)
 	file_with_path = add_path_to_file(file);
 	if (parse_file(data, file_with_path) == 1)
 	{
-		ft_fprintf(STDERR_FILENO, "Error\nLine %d is invalid\n", data->file_line);
+		ft_fprintf(STDERR_FILENO, "Error\nLine %d is invalid\n",
+				data->file_line);
+		free(file_with_path);
 		return (1);
 	}
-	//print_values(data);
 	free(file_with_path);
 	return (0);
 }
@@ -60,25 +61,25 @@ static bool		check_extension(char *file)
 static int		parse_file(t_data *data, char *file)
 {
 	int		fd;
+	int		ret;
 	char	*line;
 	char	*tmp;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (1);
+	ret = 0;
 	while (1)
 	{
 		tmp = get_next_line(fd);
 		if (tmp == NULL)
 			break ;
-		data->file_line++;
+		if (ret == 0)
+			data->file_line++;
 		line = ft_strtrim(tmp, "\n");
 		free(tmp);
-		if (parse_line(data, line, fd) == 1)
-		{
-			free(line);
-			return (1);
-		}
+		if (ret == 0 && parse_line(data, line, fd) == 1)
+			ret = 1;
 		free(line);
 	}
 	close(fd);

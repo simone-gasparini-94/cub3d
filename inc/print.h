@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data.h                                             :+:      :+:    :+:   */
+/*   print.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/01 16:40:01 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/08 16:44:12 by sgaspari         ###   ########.fr       */
+/*   Created: 2025/12/08 15:34:53 by sgaspari          #+#    #+#             */
+/*   Updated: 2025/12/08 15:35:28 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_H
-# define DATA_H
+#ifndef PRINT_H
+# define PRINT_H
 
-# include "texture.h"
-# include "color.h"
-# include "map.h"
-# include "graphic.h"
-
-typedef struct s_data
-{
-	t_map				map;
-	t_tex				tex[4];
-	t_rgb				rgb[2];
-	t_grph				grph;
-	bool				map_parsed;
-	bool				tex_parsed;
-	bool				rgb_parsed;
-	size_t				file_line;
-}						t_data;
-
-t_data	*create_data(void);
+void	print_error(char *s);
 
 #endif
