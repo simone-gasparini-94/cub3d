@@ -6,12 +6,13 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 10:13:44 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/08 11:38:03 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/08 11:53:02 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
 #include "libft.h"
+#include "parse.h"
 #include <mlx.h>
 #include <stdio.h>
 
@@ -38,7 +39,7 @@ static void	render_map2D(t_data *data)
 	tile_width = 20;
 	tile_height = 20;
 
-	printf("tile width = %f, tile height = %f\n", tile_width, tile_height);
+	print_values(data);
 	i = 0;
 	while (i < tile_height * data->map.rows)
 	{
@@ -49,7 +50,8 @@ static void	render_map2D(t_data *data)
 					&& data->map.matrix[i / (int)tile_height][j / (int)tile_width] == '1')
 				put_pixel(&data->grph.img, j, i, 0xFFFFFF);
 			else if ((j / (int)tile_width) < (int)ft_strlen(data->map.matrix[i / (int)tile_height])
-					&& data->map.matrix[i / (int)tile_height][j / (int)tile_width] == data->map.player_char)
+					&& j /(int)tile_width == (int)data->map.player_x
+					&& i / (int)tile_height == (int)data->map.player_y)
 				put_pixel(&data->grph.img, j, i, 0xFF0000);
 			else
 				put_pixel(&data->grph.img, j, i, 0x000000);
