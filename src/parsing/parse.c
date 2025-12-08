@@ -6,26 +6,25 @@
 /*   By: duccello <duccello@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 12:55:35 by duccello          #+#    #+#             */
-/*   Updated: 2025/12/02 09:47:39 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:52:27 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "color.h"
 #include "data.h"
+#include "ft_fprintf.h"
 #include "get_next_line.h"
 #include "libft.h"
-#include "ft_fprintf.h"
 #include "parse.h"
-#include "texture.h"
+#include "utils.h"
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
 
-static bool		check_extension(char *file);
-static char		*add_path_to_file(char *s);
-static int		parse_file(t_data *data, char *file);
+static bool	check_extension(char *file);
+static int	parse_file(t_data *data, char *file);
+static int	parse_line(t_data *data, char *line, int fd);
 
 int	parse(t_data *data, char *file)
 {
@@ -33,66 +32,70 @@ int	parse(t_data *data, char *file)
 
 	if (check_extension(file) == false)
 	{
-		ft_fprintf(STDERR_FILENO, "ERROR: Wrong extension\n");
+		ft_fprintf(STDERR_FILENO, "Error\nWrong extension\n");
 		return (1);
 	}
 	file_with_path = add_path_to_file(file);
 	if (parse_file(data, file_with_path) == 1)
 	{
-		ft_fprintf(STDERR_FILENO, "ERROR: Invalid file\n");
+		ft_fprintf(STDERR_FILENO, "Error\nLine %d is invalid\n",
+			data->file_line);
+		free(file_with_path);
 		return (1);
 	}
+	free(file_with_path);
 	return (0);
 }
 
-static bool		check_extension(char *file)
+static bool	check_extension(char *file)
 {
 	size_t	len;
-	
+
 	if (file == NULL)
-		return (false);	
+		return (false);
 	len = ft_strlen(file);
-	return (file[len - 4] == '.' && file[len - 3] == 'c'
-			&& file[len - 2] == 'u' && file[len - 1] == 'b');
+	return (len >= 4 && file[len - 4] == '.' && file[len - 3] == 'c' && file[len
+		- 2] == 'u' && file[len - 1] == 'b');
 }
 
-static char		*add_path_to_file(char *s)
+static int	parse_file(t_data *data, char *file)
 {
-	char	*new_str;
-
-	new_str = ft_strjoin("assets/", s);
-	return (new_str);
-}
-
-static int		parse_file(t_data *data, char *file)
-{
-	char	*line;
 	int		fd;
+	int		ret;
+	char	*line;
+	char	*tmp;
 
 	fd = open(file, O_RDONLY);
+	ret = 0;
 	if (fd == -1)
-	{
-		perror("open");
 		return (1);
-	}
 	while (1)
 	{
-		line = get_next_line(fd);
-		if (line == NULL)
+		tmp = get_next_line(fd);
+		if (tmp == NULL)
 			break ;
-		if (is_texture(data, line) == true)
-			parse_texture(data, line);
-		else if (is_color(data, line) == true)
-			parse_color(data, line);
-		else if (line[0] == '\n' || line[0] == '\0')
-			;
-		else
-		{
-			free(line);
-			return (1);
-		}
+		if (ret == 0)
+			data->file_line++;
+		line = ft_strtrim(tmp, "\n");
+		free(tmp);
+		if (ret == 0 && parse_line(data, line, fd) == 1)
+			ret = 1;
 		free(line);
 	}
 	close(fd);
-	return (0);
+	return (ret);
+}
+
+static int	parse_line(t_data *data, char *line, int fd)
+{
+	if (is_texture(data, line) == true)
+		return (parse_texture(data, line));
+	else if (is_color(data, line) == true)
+		return (parse_color(data, line));
+	else if (is_map(data, line) == true)
+		return (parse_map(data, line, fd));
+	else if (line[0] == '\0')
+		return (0);
+	else
+		return (1);
 }

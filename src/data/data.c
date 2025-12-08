@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_internal.h                           :+:      :+:    :+:   */
+/*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/17 13:34:14 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/07/31 11:21:33 by sgaspari         ###   ########.fr       */
+/*   Created: 2025/12/01 17:52:47 by sgaspari          #+#    #+#             */
+/*   Updated: 2025/12/03 16:37:23 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_INTERNAL_H
-# define GET_NEXT_LINE_INTERNAL_H
+#include "data.h"
+#include "libft.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-# include <stdbool.h>
+t_data	*create_data(void)
+{
+	t_data *data;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4
-# endif
-
-char	*initialize_buffer(void);
-bool	is_new_line_in_str(const char *s);
-void	*free_buffer(char **buffer);
-
-#endif
+	data = ft_calloc(1, sizeof(t_data));
+	if (data == NULL)
+	{
+		perror("malloc");
+		return (NULL);
+	}
+	return (data);
+}

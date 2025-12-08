@@ -6,15 +6,17 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:13:57 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/01 17:46:55 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:41:19 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEXTURES_H
 # define TEXTURES_H
 
-# include <stdbool.h>
+# define CARDINAL_POINTS 4
 
+# include <stdbool.h>
+ 
 typedef struct s_data t_data;
 
 typedef enum s_card
@@ -34,6 +36,6 @@ typedef struct s_tex
 } 	t_tex;
 
 bool	is_texture(t_data *data, char *s);
-void	parse_texture(t_data *data, char *s);
+int		parse_texture(t_data *data, char *s);
 
 # endif

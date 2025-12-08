@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   destroy.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/29 10:40:51 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/07/29 10:55:01 by sgaspari         ###   ########.fr       */
+/*   Created: 2025/12/02 12:25:45 by sgaspari          #+#    #+#             */
+/*   Updated: 2025/12/02 14:10:28 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
+#ifndef DESTROY_H
+# define DESTROY_H
 
-void	check_argc(int argc, int n);
-void	check_syscall(int ret, char *msg);
+typedef struct s_data	t_data;
+typedef struct s_node	t_node;
+
+void					destroy_data(t_data *data);
+void					destroy_array_str(char **arr, size_t len);
+void					destroy_list(t_node *head);
+int						quit(t_data *data);
 
 #endif

@@ -6,13 +6,18 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:55:43 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/01 17:17:34 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:26:34 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
+#include "destroy.h"
 #include "ft_fprintf.h"
+#include "graphic.h"
+#include "key_presses.h"
 #include "parse.h"
+#include <X11/X.h>
+#include <mlx.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -26,14 +31,19 @@ int	main(int argc, char *argv[])
 		return (1);
 	if (argc != 2)
 	{
-		ft_fprintf(STDERR_FILENO, "ERROR: Invalid number of arguments.\n");
+		ft_fprintf(STDERR_FILENO, "Error\nInvalid number of arguments.\n");
 		return (1);
 	}
-	if (parse(data, argv[1]) != 1)
+	if (parse(data, argv[1]) == 0 && init_mlx(data) == 0)
 	{
-		iniate_mlx(data);
-		// interpret();
-		// clean();
+		print_values(data);
+		mlx_hook(data->grph.win, DestroyNotify, 0, &quit, data);
+		mlx_hook(data->grph.win, KeyPress, KeyPressMask, &handle_key_presses,
+			data);
+		render(data);
+		mlx_loop(data->grph.mlx);
+		// clean_mlx
 	}
+	destroy_data(data);
 	return (0);
 }
