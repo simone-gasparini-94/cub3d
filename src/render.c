@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 10:13:44 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/08 11:53:02 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/08 13:26:12 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static void	render_map2D(t_data *data)
 	data->grph.img.addr = mlx_get_data_addr(data->grph.img.img,
 			&data->grph.img.bpp, &data->grph.img.line_l,
 			&data->grph.img.endian);
-	tile_width = 20;
-	tile_height = 20;
+	tile_width = 6;
+	tile_height = 6;
 
 	print_values(data);
 	i = 0;
