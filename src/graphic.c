@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:14:15 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/09 10:30:58 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/09 10:50:53 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ static void	set_player_angle(t_data *data)
 		data->grph.dir.angle = 0;
 	else if (map->player_char == 'W')
 		data->grph.dir.angle = PI;
-	data->grph.pl.x = (double)data->map.player_x + PADDING;
-	data->grph.pl.y = (double)data->map.player_y + PADDING;
+	data->grph.pl.x = (double)data->map.player_x + CENTRE;
+	data->grph.pl.y = (double)data->map.player_y + CENTRE;
 	data->grph.dir.x = cos(data->grph.dir.angle) * CONSTANT;
 	data->grph.dir.y = sin(data->grph.dir.angle) * CONSTANT;
 }
