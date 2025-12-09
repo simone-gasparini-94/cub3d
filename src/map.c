@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 10:17:08 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/08 16:49:05 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/09 10:03:13 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 static bool		contains_valid_chars(char *s);
 static t_node	*create_node(char *s);
 static void		convert_list_to_matrix(t_data *data, t_node *head);
-static void	set_player_angle(t_data *data);
 
 bool	is_map(t_data *data, char *s)
 {
@@ -68,7 +67,6 @@ int	parse_map(t_data *data, char *s, int fd)
 	convert_list_to_matrix(data, head);
 	if (map_check(data) == false)
 		ret = 1;
-	set_player_angle(data);
 	destroy_list(head);
 	return (ret);
 }
@@ -131,21 +129,3 @@ static void	convert_list_to_matrix(t_data *data, t_node *head)
 	data->map.matrix[i] = NULL;
 }
 
-static void	set_player_angle(t_data *data)
-{
-	t_map *map;
-
-	map = &data->map;
-	if (map->player_char == 'N')
-		data->grph.dir.pa = 0;
-	else if (map->player_char == 'S')
-		data->grph.dir.pa = PI;
-	else if (map->player_char == 'E')
-		data->grph.dir.pa = PI / 2;
-	else if (map->player_char == 'W')
-		data->grph.dir.pa = PI * (3 / 2);
-	data->grph.dir.p_x = (double)data->map.player_x;
-	data->grph.dir.p_y = (double)data->map.player_y;
-	data->grph.dir.x_d = cos(data->grph.dir.pa) * CONSTANT;
-	data->grph.dir.y_d = sin(data->grph.dir.pa) * CONSTANT;
-}

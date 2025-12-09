@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 11:45:27 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/08 13:23:53 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/09 10:34:24 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,49 +50,49 @@ int	handle_key_presses(int keysym, t_data *data)
 	return (0);
 }
 
-static void	move_forward(t_data *data)
-{
-	int	x;
-	int	y;
-
-	x = (int)(data->grph.dir.p_x + cos(data->grph.dir.pa) * MOVEMENT);
-	y = (int)(data->grph.dir.p_y + sin(data->grph.dir.pa) * MOVEMENT);
-	printf("x: %d\n", x);
-	if (data->map.matrix[y][x] != '1')
-	{
-		data->grph.dir.p_x += cos(data->grph.dir.pa) * MOVEMENT;
-		data->grph.dir.p_y += sin(data->grph.dir.pa) * MOVEMENT;
-	}
-}
-
 static void	move_backwards(t_data *data)
 {
 	int	x;
 	int	y;
 
-	x = (int)(data->grph.dir.p_x - cos(data->grph.dir.pa) * MOVEMENT);
-	y = (int)(data->grph.dir.p_y - sin(data->grph.dir.pa) * MOVEMENT);
+	x = (int)(data->grph.pl.x + cos(data->grph.dir.angle) * MOVEMENT + PADDING);
+	y = (int)(data->grph.pl.y + sin(data->grph.dir.angle) * MOVEMENT + PADDING);
+	printf("x: %d\n", x);
 	if (data->map.matrix[y][x] != '1')
 	{
-		data->grph.dir.p_x -= cos(data->grph.dir.pa) * MOVEMENT;
-		data->grph.dir.p_y -= sin(data->grph.dir.pa) * MOVEMENT;
+		data->grph.pl.x += cos(data->grph.dir.angle) * MOVEMENT;
+		data->grph.pl.y += sin(data->grph.dir.angle) * MOVEMENT;
+	}
+}
+
+static void	move_forward(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = (int)(data->grph.pl.x - cos(data->grph.dir.angle) * MOVEMENT - PADDING);
+	y = (int)(data->grph.pl.y - sin(data->grph.dir.angle) * MOVEMENT - PADDING);
+	if (data->map.matrix[y][x] != '1')
+	{
+		data->grph.pl.x -= cos(data->grph.dir.angle) * MOVEMENT;
+		data->grph.pl.y -= sin(data->grph.dir.angle) * MOVEMENT;
 	}
 }
 
 static void	turn_right(t_data *data)
 {
-	data->grph.dir.pa += INCREMENT;
-	if (data->grph.dir.pa >= (2 * PI))
-		data->grph.dir.pa -= (2 * PI);
-	data->grph.dir.x_d = cos(data->grph.dir.pa) * CONSTANT;
-	data->grph.dir.y_d = sin(data->grph.dir.pa) * CONSTANT;
+	data->grph.dir.angle += INCREMENT * PI;
+	if (data->grph.dir.angle >= (2 * PI))
+		data->grph.dir.angle -= (2 * PI);
+	data->grph.dir.x = cos(data->grph.dir.angle) * CONSTANT;
+	data->grph.dir.y = sin(data->grph.dir.angle) * CONSTANT;
 }
 
 static void	turn_left(t_data *data)
 {
-	data->grph.dir.pa -= INCREMENT;
-	if (data->grph.dir.pa < (0 * PI))
-		data->grph.dir.pa += (2 * PI);
-	data->grph.dir.x_d = cos(data->grph.dir.pa) * CONSTANT;
-	data->grph.dir.y_d = sin(data->grph.dir.pa) * CONSTANT;
+	data->grph.dir.angle -= INCREMENT * PI;
+	if (data->grph.dir.angle < (0 * PI))
+		data->grph.dir.angle += (2 * PI);
+	data->grph.dir.x = cos(data->grph.dir.angle) * CONSTANT;
+	data->grph.dir.y = sin(data->grph.dir.angle) * CONSTANT;
 }

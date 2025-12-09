@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 10:30:54 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/08 18:37:41 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/09 10:34:06 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # define PI 3.14159265359
 # define CONSTANT 5
-# define INCREMENT 0.25
+# define INCREMENT 0.125
 # define MOVEMENT 0.25
+# define PADDING 0.5
 
 typedef struct s_img
 {
@@ -29,17 +30,22 @@ typedef struct s_img
 
 typedef struct s_dir
 {
-	double	x_d;
-	double	y_d;
-	double	pa;
-	double	p_x;
-	double	p_y;
+	double	angle;
+	double	x;
+	double	y;
 }			t_dir;
+
+typedef struct s_pl
+{
+	double	x;
+	double	y;
+}	t_pl;
 
 typedef struct s_grph
 {
 	t_img	img;
 	t_dir	dir;
+	t_pl	pl;
 	void	*mlx;
 	void	*win;
 	int		window_width;

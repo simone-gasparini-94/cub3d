@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 10:13:44 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/08 18:41:58 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/09 10:18:06 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,22 @@ static int	put_pixel(t_img *img, int x, int y, uint32_t color)
 
 static void	draw_player(t_grph *grph)
 {
-	t_dir dir;
+	t_pl pl;
 	int x;
 	int y;
 	int player_size;
 
-	dir.p_x = grph->dir.p_x * grph->tile_size;
-	dir.p_y = grph->dir.p_y * grph->tile_size;
+	pl.x = grph->pl.x * grph->tile_size;
+	pl.y = grph->pl.y * grph->tile_size;
 	player_size = 3;
-	y = (int)dir.p_y - player_size;
-	while (y <= (int)dir.p_y + player_size)
+	y = (int)pl.y - player_size;
+	while (y <= (int)pl.y + player_size)
 	{
-		x = (int)dir.p_x - player_size;
-		while (x <= (int)dir.p_x + player_size)
+		x = (int)pl.x - player_size;
+		while (x <= (int)pl.x + player_size)
 		{
-			if ((x - dir.p_x) * (x - dir.p_x) + (y - dir.p_y) * (y
-					- dir.p_y) <= player_size * player_size)
+			if ((x - pl.x) * (x - pl.x) + (y - pl.y) * (y
+					- pl.y) <= player_size * player_size)
 				put_pixel(&grph->img, x, y, 0xFF0000);
 			x++;
 		}

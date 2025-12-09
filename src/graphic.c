@@ -1,16 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   graphic.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/09 10:14:15 by sgaspari          #+#    #+#             */
+/*   Updated: 2025/12/09 10:30:58 by sgaspari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "data.h"
 #include "destroy.h"
 #include "ft_fprintf.h"
 #include <mlx.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <math.h>
 
 static int	init_mlx_images(t_data *data);
 static void	init_graphic_values(t_data *data);
+static void	set_player_angle(t_data *data);
 
 int	init_mlx(t_data *data)
 {
 	init_graphic_values(data);
+	set_player_angle(data);
 	data->grph.mlx = mlx_init();
 	if (data->grph.mlx == NULL)
 	{
@@ -63,4 +78,23 @@ int	init_mlx_images(t_data *data)
 		|| data->tex[WE].texture == NULL || data->tex[EA].texture == NULL)
 		return (1);
 	return (0);
+}
+
+static void	set_player_angle(t_data *data)
+{
+	t_map *map;
+
+	map = &data->map;
+	if (map->player_char == 'N')
+		data->grph.dir.angle = PI / 2;
+	else if (map->player_char == 'S')
+		data->grph.dir.angle = PI * 3 / 2;
+	else if (map->player_char == 'E')
+		data->grph.dir.angle = 0;
+	else if (map->player_char == 'W')
+		data->grph.dir.angle = PI;
+	data->grph.pl.x = (double)data->map.player_x + PADDING;
+	data->grph.pl.y = (double)data->map.player_y + PADDING;
+	data->grph.dir.x = cos(data->grph.dir.angle) * CONSTANT;
+	data->grph.dir.y = sin(data->grph.dir.angle) * CONSTANT;
 }
