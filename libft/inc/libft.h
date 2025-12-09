@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:07:27 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/09 16:39:54 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:11:15 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int			ft_isdigit(int c);
 int			ft_islowercase(int c);
 int			ft_isprint(int c);
 int			ft_isspace(int c);
+int			ft_isuppercase(int c);
 char		*ft_itoa(int n);
 void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_lstadd_front(t_list **lst, t_list *new);
