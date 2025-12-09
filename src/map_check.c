@@ -6,7 +6,7 @@
 /*   By: duccello <duccello@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:39:31 by duccello          #+#    #+#             */
-/*   Updated: 2025/12/09 15:36:08 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:40:59 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "data.h"
@@ -92,5 +92,5 @@ static bool	player_check(t_data *data)
 		}
 		i++;
 	}
-	return (true);
+	return (p == 1);
 }
