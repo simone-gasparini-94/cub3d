@@ -8,6 +8,7 @@ SRCS		=	main.c											\
 				color.c											\
 				data.c											\
 				destroy.c										\
+				doors.c											\
 				events.c										\
 				graphic.c										\
 				map.c											\

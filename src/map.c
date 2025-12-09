@@ -19,13 +19,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static bool		contains_valid_chars(char *s);
+static bool		contains_valid_chars(t_data *data, char *s);
 static t_node	*create_node(char *s);
 static void		convert_list_to_matrix(t_data *data, t_node *head);
 
 bool	is_map(t_data *data, char *s)
 {
-	return (contains_valid_chars(s) && data->map_parsed == false
+	return (contains_valid_chars(data, s) && data->map_parsed == false
 		&& data->tex_parsed == true && data->rgb_parsed == true);
 }
 
@@ -67,6 +67,8 @@ int	parse_map(t_data *data, char *s, int fd)
 	convert_list_to_matrix(data, head);
 	if (map_check(data) == false)
 		ret = 1;
+	else
+		set_doors(data);
 	destroy_list(head);
 	return (ret);
 }
@@ -83,7 +85,7 @@ static t_node	*create_node(char *s)
 	return (node);
 }
 
-static bool	contains_valid_chars(char *s)
+static bool	contains_valid_chars(t_data *data, char *s)
 {
 	bool	contains_char;
 	size_t	i;
@@ -92,6 +94,8 @@ static bool	contains_valid_chars(char *s)
 	i = 0;
 	while (s[i] != '\0')
 	{
+		if (s[i] == '0')
+			data->map.empty_spaces++;
 		if (!ft_isspace(s[i]) && s[i] != '0' && s[i] != '1' && s[i] != 'N'
 			&& s[i] != 'S' && s[i] != 'E' && s[i] != 'W')
 			return (false);

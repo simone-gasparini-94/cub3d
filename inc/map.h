@@ -31,10 +31,12 @@ typedef struct s_map
 	char			player_char;
 	size_t			player_x;
 	size_t			player_y;
+	size_t			empty_spaces;
 }					t_map;
 
 bool				is_map(t_data *data, char *s);
 int					parse_map(t_data *data, char *s, int fd);
 bool				map_check(t_data *data);
+void  				set_doors(t_data    *data);
 
 #endif
