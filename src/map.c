@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 10:17:08 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/09 10:03:13 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/09 16:16:17 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	parse_map(t_data *data, char *s, int fd)
 			break ;
 		}
 		curr->next = create_node(line);
+		if (ft_strlen(line) > data->map.cols)
+			data->map.cols = ft_strlen(line);
 		free(line);
 		curr = curr->next;
 	}
@@ -125,11 +127,10 @@ static void	convert_list_to_matrix(t_data *data, t_node *head)
 	i = 0;
 	while (curr != NULL)
 	{
-		data->map.matrix[i++] = ft_strdup(curr->s);
-		if (ft_strlen(curr->s) > data->map.cols)
-			data->map.cols = ft_strlen(curr->s);
+		data->map.matrix[i] = ft_calloc(data->map.cols + 1, sizeof(char));
+		ft_strlcpy(data->map.matrix[i], curr->s, data->map.cols + 1);
+		i++;
 		curr = curr->next;
 	}
 	data->map.matrix[i] = NULL;
 }
-
