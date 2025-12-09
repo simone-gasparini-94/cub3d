@@ -6,8 +6,8 @@
 
 static void find_next_area(char **map, size_t *y, size_t *x);
 static void fill_area(char  **map, char c, size_t y, size_t x, t_data *data);
-static void	find_vertical_walls(t_data *data);
-static void	find_horizontal_walls(t_data *data);
+static void	find_vertical_walls(t_map *map);
+static void	find_horizontal_walls(t_map *map);
 
 void    set_doors(t_data *data)
 {
@@ -25,8 +25,8 @@ void    set_doors(t_data *data)
         fill_area(data->map.map, area_char, y, x, data);
         area_char++;
     }
-	find_vertical_walls(data);
-	find_horizontal_walls(data);
+	find_vertical_walls(&data->map);
+	find_horizontal_walls(&data->map);
 }
 
 static void find_next_area(char **map, size_t *y, size_t *x)
@@ -58,30 +58,46 @@ static void fill_area(char  **map, char c, size_t y, size_t x, t_data *data)
     fill_area(map, c, y, x - 1, data);
 }
 
-static void	find_vertical_walls(t_data *data)
+static void	find_vertical_walls(t_map *map)
 {
-	char	**map;
 	size_t	x;
 	size_t	y;
 
-	map = data->map.map;
 	y = 1;
-	while (y < data->map.rows - 1)
+	while (y < map->rows - 1)
 	{
 		x = 1;
-		while (map[y][x] != '\0')
+		while (map->map[y][x] != '\0')
 		{
-			if (map[y][x] == '1' && ft_isalpha(map[y][x - 1])
-				&& ft_isalpha(map[y][x + 1])
-				&& map[y][x - 1] != map[y][x + 1])
-					map[y][x] = '~';
+			if (map->map[y][x] == '1'
+				&& ft_islowercase(map->map[y][x - 1])
+				&& ft_islowercase(map->map[y][x + 1])
+				&& map->map[y][x - 1] != map->map[y][x + 1])
+					map->map[y][x] = map->map[y][x - 1] - 0x20;
 			x++;
 		}
 		y++;
 	}
 }
 
-static void	find_horizontal_walls(t_data *data)
+static void	find_horizontal_walls(t_map *map)
 {
-	(void)data;
+	size_t	x;
+	size_t	y;
+
+	x = 1;
+	while (x < map->cols - 1)
+	{
+		y = 1;
+		while (y < map->rows - 1)
+		{
+			if (map->map[y][x] == '1'
+				&& ft_islowercase(map->map[y - 1][x])
+				&& ft_islowercase(map->map[y + 1][x])
+				&& map->map[y - 1][x] != map->map[y + 1][x])
+					map->map[y][x] = map->map[y - 1][x] - 0x20;
+			y++;
+		}
+		x++;
+	}
 }

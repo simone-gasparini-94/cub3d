@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:07:27 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/03 13:48:19 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/09 16:39:54 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int			ft_isalnum(int c);
 int			ft_isalpha(int c);
 int			ft_isascii(int c);
 int			ft_isdigit(int c);
+int			ft_islowercase(int c);
 int			ft_isprint(int c);
 int			ft_isspace(int c);
 char		*ft_itoa(int n);
