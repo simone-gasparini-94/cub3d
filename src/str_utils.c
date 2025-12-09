@@ -34,19 +34,12 @@ char    **copy_matrix(t_data *data)
 {
     char    **new_matrix;
     size_t  i;
-    size_t  j;
 
     new_matrix = malloc(sizeof(char *) * (data->map.rows + 1));
     i = 0;
     while (i < data->map.rows)
     {
-        j = 0;
-        new_matrix[i] = malloc(sizeof(char) * (ft_strlen(data->map.matrix[i]) + 1));
-        while (data->map.matrix[i][j])
-        {
-            new_matrix[i][j] = data->map.matrix[i][j];
-            j++;
-        }
+        new_matrix[i] = ft_strdup(data->map.matrix[i]); 
         i++;
     }
     new_matrix[i] = NULL;
