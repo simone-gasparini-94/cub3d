@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:48:28 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/08 10:10:06 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:35:37 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@ void	print_values(t_data *data)
 {
 	size_t	i;
 
-	printf("\n");
-	i = 0;
-	while (i < data->map.rows)
-		printf("%s\n", data->map.matrix[i++]);
 	printf("\n");
 	printf("%s:\t%d, %d, %d\n", data->rgb[F].id, data->rgb[F].red,
 		data->rgb[F].green, data->rgb[F].blue);
@@ -36,4 +32,12 @@ void	print_values(t_data *data)
 	printf("player_char: %c, player x: %zu, player y: %zu, rows: %zu, cols: %zu\n",
 		data->map.player_char, data->map.player_x,
 		data->map.player_y, data->map.rows, data->map.cols);
+	i = 0;
+	while (i < data->map.rows)
+		printf("%s\n", data->map.matrix[i++]);
+	printf("\n");
+	i = 0;
+	while (i < data->map.rows)
+		printf("%s\n", data->map.map[i++]);
+	printf("\n");
 }

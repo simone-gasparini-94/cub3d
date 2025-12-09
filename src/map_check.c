@@ -6,7 +6,7 @@
 /*   By: duccello <duccello@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:39:31 by duccello          #+#    #+#             */
-/*   Updated: 2025/12/08 10:08:09 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:36:08 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "data.h"
@@ -24,7 +24,6 @@ bool	map_check(t_data *data)
 {
 	if (player_check(data) == false)
 		return (false);
-	print_values(data);
 	if (wall_check(data, data->map.matrix, data->map.rows,
 			data->map.player_char) == false)
 		return (false);

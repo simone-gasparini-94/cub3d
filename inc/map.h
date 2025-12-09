@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:06:35 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/08 10:06:06 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:33:48 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ typedef struct s_node
 
 typedef struct s_map
 {
-	char			**matrix;
+	char			**matrix; //map parsed from file
+	char			**map; //map modified with areas and doors
 	size_t			rows;
 	size_t			cols;
 	bool			parsed;
