@@ -8,15 +8,17 @@ SRCS		=	main.c											\
 				color.c											\
 				data.c											\
 				destroy.c										\
+				events.c										\
 				graphic.c										\
-				key_presses.c									\
 				map.c											\
 				map_check.c										\
-				render.c										\
-				str_utils.c										\
+				move.c											\
 				parse.c											\
 				print.c											\
-				texture.c						
+				render.c										\
+				str_utils.c										\
+				texture.c										\
+				turn.c
 SRC_FILES	=	$(addprefix $(SRC_DIR)/, $(SRCS))
 OBJS		=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
 LIBFT		=	-Llibft -lft

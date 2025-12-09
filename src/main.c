@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:55:43 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/08 18:23:50 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:08:48 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 #include "parse.h"
 #include "graphic.h"
 #include <mlx.h>
-#include "key_presses.h"
+#include "events.h"
 #include <X11/X.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 
 int	main(int argc, char *argv[])
@@ -38,7 +36,7 @@ int	main(int argc, char *argv[])
 	{
 		mlx_hook(data->grph.win, DestroyNotify, 0, &quit, data);
 		mlx_hook(data->grph.win, KeyPress, KeyPressMask, 
-			&handle_key_presses, data);
+			&handle_events, data);
 		render(data);
 		mlx_loop(data->grph.mlx);
 		//clean_mlx

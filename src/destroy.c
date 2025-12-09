@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 12:17:53 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/08 16:54:08 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:09:41 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,4 @@ static void	destroy_rgb_elements(t_data *data)
 		free(data->rgb[C].id);
 	if (data->rgb[F].id != NULL)
 		free(data->rgb[F].id);
-}
-
-int	quit(t_data *data)
-{
-	mlx_loop_end(data->grph.mlx);
-	return (0);
 }
