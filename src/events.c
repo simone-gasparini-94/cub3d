@@ -50,7 +50,12 @@ static void	open_door(t_data *data)
 	y = (int)(data->grph.pl.y + sin(data->grph.dir.angle));
 	if (data->map.map[y][x] == '\\')
 	{
-		data->map.map[y][x] = '0';
+		data->map.map[y][x] = '/';
+		render(data);
+	}
+	else if (data->map.map[y][x] == '/')
+	{
+		data->map.map[y][x] = '\\';
 		render(data);
 	}
 }
