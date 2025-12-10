@@ -17,7 +17,7 @@
 #include <mlx.h>
 #include <X11/keysym.h>
 
-static void	open_door(t_data *data);
+static void	toggle_door(t_data *data);
 
 int	handle_events(int keysym, t_data *data)
 {
@@ -31,7 +31,7 @@ int	handle_events(int keysym, t_data *data)
 	if (keysym == XK_Left || keysym == XK_Right)
 		turn(keysym, data);
 	if (keysym == XK_space)
-		open_door(data);
+		toggle_door(data);
 	return (0);
 }
 
@@ -41,7 +41,7 @@ int	quit(t_data *data)
 	return (0);
 }
 
-static void	open_door(t_data *data)
+static void	toggle_door(t_data *data)
 {
 	int	x;
 	int	y;
