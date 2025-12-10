@@ -43,10 +43,12 @@ static void	render_map2D(t_grph *grph, t_data *data)
 		j = 0;
 		while (j < grph->map_width)
 		{
-			if ((j / grph->tile_size) < (int)ft_strlen(data->map.matrix[i
-					/ grph->tile_size]) && data->map.matrix[i
+			if ((j / grph->tile_size) < (int)data->map.cols && data->map.map[i
 				/ grph->tile_size][j / grph->tile_size] == '1')
 				put_pixel(&grph->img, j, i, 0xFFFFFF);
+			else if ((j / grph->tile_size) < (int)data->map.cols 
+			&& data->map.map[i / grph->tile_size][j / grph->tile_size] == '\\')
+				put_pixel(&grph->img, j, i, 0x8F008F);
 			j++;
 		}
 		i++;

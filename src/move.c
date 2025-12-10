@@ -54,7 +54,7 @@ static void	move_forward(t_data *data)
 
 	x = (int)(data->grph.pl.x + cos(data->grph.dir.angle) * MOVEMENT);
 	y = (int)(data->grph.pl.y + sin(data->grph.dir.angle) * MOVEMENT);
-	if (data->map.matrix[y][x] != '1')
+	if (data->map.map[y][x] != '1' && data->map.map[y][x] != '\\')
 	{
 		data->grph.pl.x += cos(data->grph.dir.angle) * MOVEMENT;
 		data->grph.pl.y += sin(data->grph.dir.angle) * MOVEMENT;
@@ -70,7 +70,7 @@ static void	move_backwards(t_data *data)
 
 	x = (int)(data->grph.pl.x - cos(data->grph.dir.angle) * MOVEMENT);
 	y = (int)(data->grph.pl.y - sin(data->grph.dir.angle) * MOVEMENT);
-	if (data->map.matrix[y][x] != '1')
+	if (data->map.map[y][x] != '1' && data->map.map[y][x] != '\\')
 	{
 		data->grph.pl.x -= cos(data->grph.dir.angle) * MOVEMENT;
 		data->grph.pl.y -= sin(data->grph.dir.angle) * MOVEMENT;
@@ -86,7 +86,7 @@ static void	move_left(t_data *data)
 
 	x = (int)(data->grph.pl.x - cos(data->grph.dir.angle + PI / 2) * MOVEMENT);
 	y = (int)(data->grph.pl.y - sin(data->grph.dir.angle + PI / 2) * MOVEMENT);
-	if (data->map.matrix[y][x] != '1')
+	if (data->map.map[y][x] != '1' && data->map.map[y][x] != '\\')
 	{
 		data->grph.pl.x -= cos(data->grph.dir.angle + PI / 2) * MOVEMENT;
 		data->grph.pl.y -= sin(data->grph.dir.angle + PI / 2) * MOVEMENT;
@@ -102,7 +102,7 @@ static void	move_right(t_data *data)
 
 	x = (int)(data->grph.pl.x - cos(data->grph.dir.angle - PI / 2) * MOVEMENT);
 	y = (int)(data->grph.pl.y - sin(data->grph.dir.angle - PI / 2) * MOVEMENT);
-	if (data->map.matrix[y][x] != '1')
+	if (data->map.map[y][x] != '1' && data->map.map[y][x] != '\\')
 	{
 		data->grph.pl.x -= cos(data->grph.dir.angle - PI / 2) * MOVEMENT;
 		data->grph.pl.y -= sin(data->grph.dir.angle - PI / 2) * MOVEMENT;

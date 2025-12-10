@@ -12,8 +12,12 @@
 
 #include "data.h"
 #include "events.h"
+#include <stdio.h>
+#include <math.h>
 #include <mlx.h>
 #include <X11/keysym.h>
+
+static void	open_door(t_data *data);
 
 int	handle_events(int keysym, t_data *data)
 {
@@ -26,6 +30,8 @@ int	handle_events(int keysym, t_data *data)
 		move(keysym, data);
 	if (keysym == XK_Left || keysym == XK_Right)
 		turn(keysym, data);
+	if (keysym == XK_space)
+		open_door(data);
 	return (0);
 }
 
@@ -33,4 +39,18 @@ int	quit(t_data *data)
 {
 	mlx_loop_end(data->grph.mlx);
 	return (0);
+}
+
+static void	open_door(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = (int)(data->grph.pl.x + cos(data->grph.dir.angle));
+	y = (int)(data->grph.pl.y + sin(data->grph.dir.angle));
+	if (data->map.map[y][x] == '\\')
+	{
+		data->map.map[y][x] = '0';
+		render(data);
+	}
 }
