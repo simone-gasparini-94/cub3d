@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:06:35 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/09 17:01:02 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/10 11:42:14 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,8 @@ bool				is_map(t_data *data, char *s);
 int					parse_map(t_data *data, char *s, int fd);
 bool				map_check(t_data *data);
 void  				set_doors(t_data    *data);
+void				find_enclosed_areas(t_data *data, char *area_char);
+void				find_next_area(char **map, size_t *y, size_t *x, char c);
+void				find_eligible_walls(t_map *map);
 
 #endif

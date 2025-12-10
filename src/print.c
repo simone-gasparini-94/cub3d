@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:48:28 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/10 09:57:46 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/10 11:43:11 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ void	print_map(t_data *data, t_num n);
 
 void	print_values(t_data *data)
 {
-	size_t	i;
-	size_t	j;
-
 	printf("\n");
 	printf("%s:\t%d, %d, %d\n", data->rgb[F].id, data->rgb[F].red,
 		data->rgb[F].green, data->rgb[F].blue);
