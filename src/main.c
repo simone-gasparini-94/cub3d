@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:55:43 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/09 15:36:44 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/10 09:46:25 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	main(int argc, char *argv[])
 	}
 	if (parse(data, argv[1]) == 0 && init_mlx(data) == 0)
 	{
-		print_values(data);
 		mlx_hook(data->grph.win, DestroyNotify, 0, &quit, data);
 		mlx_hook(data->grph.win, KeyPress, KeyPressMask, 
 			&handle_events, data);

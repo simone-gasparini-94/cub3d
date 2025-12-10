@@ -6,17 +6,22 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:48:28 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/09 18:38:41 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/10 09:57:46 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
+#include "print.h"
+#include "libft.h"
 #include <stdio.h>
 #include <sys/types.h>
 
 #define RED     "\033[0;31m"
 #define GREEN   "\033[0;32m"
+#define YELLOW	"\033[0;33m"
 #define RESET   "\033[0m"
+
+void	print_map(t_data *data, t_num n);
 
 void	print_values(t_data *data)
 {
@@ -37,34 +42,42 @@ void	print_values(t_data *data)
 	printf("player_char: %c, player x: %zu, player y: %zu, rows: %zu, cols: %zu\n",
 		data->map.player_char, data->map.player_x,
 		data->map.player_y, data->map.rows, data->map.cols);
-	i = 0;
-	while (i < data->map.rows)
-	{
-		j = 0;
-		while (j < data->map.cols)
-		{
-			if (data->map.matrix[i][j] == '1')
-				printf(RED "%c" RESET, data->map.matrix[i][j]);
-			else
-				printf("%c", data->map.matrix[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
 	printf("\n");
+	print_map(data, MATRIX);
+	printf("\n");
+	print_map(data, MAP);
+	printf("\n");
+}
+
+void	print_map(t_data *data, t_num n)
+{
+	size_t	i;
+	size_t	j;
+
 	i = 0;
 	while (i < data->map.rows)
 	{
 		j = 0;
 		while (j < data->map.cols)
 		{
-			if (data->map.map[i][j] == '1')
-				printf(RED "%c" RESET, data->map.map[i][j]);
-			else if (data->map.map[i][j] == '\\')
-				printf(GREEN "%c" RESET, data->map.map[i][j]);
+			if (n == MATRIX)
+			{
+				if (data->map.matrix[i][j] == '1')
+					printf(RED "%c" RESET, data->map.matrix[i][j]);
+				else
+					printf("%c", data->map.matrix[i][j]);
+			}
 			else
-				printf("%c", data->map.map[i][j]);
+			{
+				if (data->map.map[i][j] == '1')
+					printf(RED "%c" RESET, data->map.map[i][j]);
+				else if (data->map.map[i][j] == '\\')
+					printf(GREEN "%c" RESET, data->map.map[i][j]);
+				else if (ft_isuppercase(data->map.map[i][j]))
+					printf(YELLOW "%c" RESET, data->map.map[i][j]);
+				else
+					printf("%c", data->map.map[i][j]);
+			}
 			j++;
 		}
 		printf("\n");

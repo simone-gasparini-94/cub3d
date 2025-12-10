@@ -6,13 +6,14 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 17:42:37 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/09 18:27:32 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/10 10:17:26 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
 #include "utils.h"
 #include "libft.h"
+#include "print.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -33,6 +34,7 @@ void    set_doors(t_data *data)
     size_t  x;
 	bool	door_created;
 
+	print_map(data, MATRIX);
     data->map.map = copy_matrix(data);
     area_char = 'a';
     y = 1;
@@ -43,8 +45,10 @@ void    set_doors(t_data *data)
         fill_area(data->map.map, area_char, y, x, data);
         area_char++;
     }
+	print_map(data, MAP);
 	find_vertical_walls(&data->map);
 	find_horizontal_walls(&data->map);
+	print_map(data, MAP);
 	y = 1;
 	x = 1;
 	index_char = 'a';
@@ -55,6 +59,7 @@ void    set_doors(t_data *data)
 		create_door(data->map.map, y, x, index_char, &door_created, 1);
 		index_char++;
 	}
+	print_map(data, MAP);
 	clean_map(&data->map);
 }
 
@@ -91,7 +96,10 @@ static void	create_door(char **map, size_t y, size_t x, char c, bool *door_creat
 		*door_created = true;
 		return ;
 	}
-	map[y][x] = 'z';
+	if (map[y][x] == c)
+		map[y][x] = 'z';
+	else
+		return ;
 	if (rand % 2 == 0)
 	{
 		create_door(map, y + 1, x, c, door_created, rand + 1);
