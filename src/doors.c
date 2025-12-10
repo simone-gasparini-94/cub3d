@@ -120,9 +120,7 @@ static void	clean_map(t_map *map)
 		x = 0;
 		while (x < map->cols)
 		{
-			if (ft_islowercase(map->map[y][x]))
-				map->map[y][x] = '0';
-			else if (ft_isuppercase(map->map[y][x]))
+			if (ft_isuppercase(map->map[y][x]))
 				map->map[y][x] = '1';
 			x++;
 		}
