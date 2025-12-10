@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 10:13:44 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/09 10:18:06 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/10 15:33:00 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,12 @@ static void	draw_player(t_grph *grph)
 	int x;
 	int y;
 	int player_size;
+	int	i;
+	int	ray_length;
 
 	pl.x = grph->pl.x * grph->tile_size;
 	pl.y = grph->pl.y * grph->tile_size;
-	player_size = 3;
+	player_size = grph->tile_size / 3;
 	y = (int)pl.y - player_size;
 	while (y <= (int)pl.y + player_size)
 	{
@@ -88,5 +90,14 @@ static void	draw_player(t_grph *grph)
 			x++;
 		}
 		y++;
+	}
+	ray_length = grph->tile_size;
+	i = 0;
+	while (i < ray_length)
+	{
+		x = pl.x + grph->dir.x * i;
+		y = pl.y + grph->dir.y * i;
+		put_pixel(&grph->img, x, y, 0xFFFF00);
+		i++;
 	}
 }

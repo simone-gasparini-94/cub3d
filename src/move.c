@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:54:08 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/09 11:12:08 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/10 15:33:58 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ static void	move_forward(t_data *data)
 	int	x;
 	int	y;
 
-	x = (int)(data->grph.pl.x - cos(data->grph.dir.angle) * MOVEMENT);
-	y = (int)(data->grph.pl.y - sin(data->grph.dir.angle) * MOVEMENT);
+	x = (int)(data->grph.pl.x + cos(data->grph.dir.angle) * MOVEMENT);
+	y = (int)(data->grph.pl.y + sin(data->grph.dir.angle) * MOVEMENT);
 	if (data->map.matrix[y][x] != '1')
 	{
-		data->grph.pl.x -= cos(data->grph.dir.angle) * MOVEMENT;
-		data->grph.pl.y -= sin(data->grph.dir.angle) * MOVEMENT;
+		data->grph.pl.x += cos(data->grph.dir.angle) * MOVEMENT;
+		data->grph.pl.y += sin(data->grph.dir.angle) * MOVEMENT;
 	}
 }
 
@@ -66,12 +66,12 @@ static void	move_backwards(t_data *data)
 	int	x;
 	int	y;
 
-	x = (int)(data->grph.pl.x + cos(data->grph.dir.angle) * MOVEMENT);
-	y = (int)(data->grph.pl.y + sin(data->grph.dir.angle) * MOVEMENT);
+	x = (int)(data->grph.pl.x - cos(data->grph.dir.angle) * MOVEMENT);
+	y = (int)(data->grph.pl.y - sin(data->grph.dir.angle) * MOVEMENT);
 	if (data->map.matrix[y][x] != '1')
 	{
-		data->grph.pl.x += cos(data->grph.dir.angle) * MOVEMENT;
-		data->grph.pl.y += sin(data->grph.dir.angle) * MOVEMENT;
+		data->grph.pl.x -= cos(data->grph.dir.angle) * MOVEMENT;
+		data->grph.pl.y -= sin(data->grph.dir.angle) * MOVEMENT;
 	}
 }
 
