@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:54:16 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/09 11:07:38 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/10 14:44:42 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ void	turn(int keysym, t_data *data)
 	
 static void	turn_right(t_data *data)
 {
-	data->grph.dir.angle += INCREMENT * PI;
+	data->grph.dir.angle += PI / 6;
 	if (data->grph.dir.angle >= (2 * PI))
 		data->grph.dir.angle -= (2 * PI);
-	data->grph.dir.x = cos(data->grph.dir.angle) * CONSTANT;
-	data->grph.dir.y = sin(data->grph.dir.angle) * CONSTANT;
+	data->grph.dir.x = cos(data->grph.dir.angle);
+	data->grph.dir.y = sin(data->grph.dir.angle);
 }
 
 static void	turn_left(t_data *data)
 {
-	data->grph.dir.angle -= INCREMENT * PI;
+	data->grph.dir.angle -= PI / 6;
 	if (data->grph.dir.angle < (0 * PI))
 		data->grph.dir.angle += (2 * PI);
-	data->grph.dir.x = cos(data->grph.dir.angle) * CONSTANT;
-	data->grph.dir.y = sin(data->grph.dir.angle) * CONSTANT;
+	data->grph.dir.x = cos(data->grph.dir.angle);
+	data->grph.dir.y = sin(data->grph.dir.angle);
 }

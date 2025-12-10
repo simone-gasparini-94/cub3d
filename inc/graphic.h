@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 10:30:54 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/09 10:50:21 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/10 14:44:57 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define GRAPHIC_H
 
 # define PI 3.14159265359
-# define CONSTANT 5
-# define INCREMENT 0.125
 # define MOVEMENT 0.25
 # define CENTRE 0.5
 
