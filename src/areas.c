@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 11:28:03 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/10 11:33:10 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/10 13:18:39 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static void fill_area(char  **map, char c, size_t y, size_t x, t_data *data);
 
 void	find_enclosed_areas(t_data *data, char *area_char)
 {
@@ -49,9 +48,9 @@ void	find_next_area(char **map, size_t *y, size_t *x, char c)
     }
 }
 
-static void fill_area(char  **map, char c, size_t y, size_t x, t_data *data)
+void fill_area(char  **map, char c, size_t y, size_t x, t_data *data)
 {
-    if (map[y][x] == '1' || map[y][x] == c)
+    if (map[y][x] == '1' || map[y][x] == c || map[y][x] == '\\')
         return ;
     if (ft_isalpha(map[y][x]) == true && map[y][x] < c)
         return ;
