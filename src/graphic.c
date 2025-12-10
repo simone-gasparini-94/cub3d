@@ -95,6 +95,8 @@ static void	set_player_angle(t_data *data)
 		data->grph.dir.angle = PI;
 	data->grph.pl.x = (double)data->map.player_x + CENTRE;
 	data->grph.pl.y = (double)data->map.player_y + CENTRE;
+	data->grph.pl.x_grph = data->grph.pl.x * data->grph.tile_size;
+	data->grph.pl.y_grph = data->grph.pl.y * data->grph.tile_size;
 	data->grph.dir.x = cos(data->grph.dir.angle);
 	data->grph.dir.y = sin(data->grph.dir.angle);
 }

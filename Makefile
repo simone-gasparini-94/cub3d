@@ -17,6 +17,7 @@ SRCS		=	main.c											\
 				move.c											\
 				parse.c											\
 				print.c											\
+				raycast.c										\
 				render.c										\
 				str_utils.c										\
 				texture.c										\

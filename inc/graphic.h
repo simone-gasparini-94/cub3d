@@ -37,6 +37,8 @@ typedef struct s_pl
 {
 	double	x;
 	double	y;
+	double	x_grph;
+	double	y_grph;
 }	t_pl;
 
 typedef struct s_grph
@@ -58,5 +60,7 @@ typedef struct s_grph
 
 int			init_mlx(t_data *data);
 void		render(t_data *data);
+void		draw_rays(t_grph *grph, t_data *data);
+int			put_pixel(t_img *img, int x, int y, uint32_t color);
 
 #endif

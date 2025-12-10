@@ -18,9 +18,7 @@
 #include <math.h>
 
 static void	render_map2D(t_grph *grph, t_data *data);
-static int	put_pixel(t_img *img, int x, int y, uint32_t color);
 static void	draw_player(t_grph *grph);
-static void	draw_rays(t_grph *grph, t_data *data);
 
 void	render(t_data *data)
 {
@@ -60,7 +58,7 @@ static void	render_map2D(t_grph *grph, t_data *data)
 		grph->window_height - grph->map_height - grph->padding);
 }
 
-static int	put_pixel(t_img *img, int x, int y, uint32_t color)
+int	put_pixel(t_img *img, int x, int y, uint32_t color)
 {
 	char	*px;
 
@@ -94,40 +92,3 @@ static void	draw_player(t_grph *grph)
 	}
 }
 
-static void	draw_rays(t_grph *grph, t_data *data)
-{
-	int		i;
-	int		num_rays;
-	double	ray_angle;
-	double	angle_step;
-	int		j;
-	int		x;
-	int		y;
-	double	pl_x;
-	double	pl_y;
-	
-	pl_x = grph->pl.x * grph->tile_size;
-	pl_y = grph->pl.y * grph->tile_size;
-	num_rays = 60;
-	angle_step = PI / 180.0;
-	i = 0;
-	while (i < num_rays)
-	{
-		ray_angle = grph->dir.angle - (30.0 * PI / 180.0) + (angle_step * i);
-		
-		j = 0;
-		while (1)
-		{
-			x = pl_x + cos(ray_angle) * j;
-			y = pl_y + sin(ray_angle) * j;
-			
-			if (x >= 0 && x < grph->map_width && y >= 0 && grph->map_height
-					&& data->map.matrix[y / grph->tile_size][x / grph->tile_size] != '1')
-				put_pixel(&grph->img, x, y, 0x00FF00); // Green rays
-			else
-				break;
-			j++;
-		}
-		i++;
-	}
-}

@@ -30,7 +30,7 @@ void	turn(int keysym, t_data *data)
 	
 static void	turn_right(t_data *data)
 {
-	data->grph.dir.angle += PI / 6;
+	data->grph.dir.angle += PI / 36;
 	if (data->grph.dir.angle >= (2 * PI))
 		data->grph.dir.angle -= (2 * PI);
 	data->grph.dir.x = cos(data->grph.dir.angle);
@@ -39,7 +39,7 @@ static void	turn_right(t_data *data)
 
 static void	turn_left(t_data *data)
 {
-	data->grph.dir.angle -= PI / 6;
+	data->grph.dir.angle -= PI / 36;
 	if (data->grph.dir.angle < (0 * PI))
 		data->grph.dir.angle += (2 * PI);
 	data->grph.dir.x = cos(data->grph.dir.angle);
