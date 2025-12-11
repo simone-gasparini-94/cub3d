@@ -89,9 +89,9 @@ static void	set_player_angle(t_data *data)
 
 	map = &data->map;
 	if (map->player_char == 'N')
-		data->grph.dir.angle = PI / 2;
-	else if (map->player_char == 'S')
 		data->grph.dir.angle = PI * 3 / 2;
+	else if (map->player_char == 'S')
+		data->grph.dir.angle = PI / 2;
 	else if (map->player_char == 'E')
 		data->grph.dir.angle = 0;
 	else if (map->player_char == 'W')
