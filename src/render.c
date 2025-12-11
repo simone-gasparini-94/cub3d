@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 10:13:44 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/10 16:33:40 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/11 11:33:06 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,61 @@
 #include <math.h>
 
 static void	render_map2D(t_grph *grph, t_data *data);
+static void	render_3D(t_grph *grph, t_data *data);
 static void	draw_player(t_grph *grph);
+static double cast_ray(t_grph *grph, t_data *data, double ray_angle);
 
 void	render(t_data *data)
 {
+	render_3D(&data->grph, data);
 	render_map2D(&data->grph, data);
+	mlx_put_image_to_window(data->grph.mlx, data->grph.win, data->grph.img.img,
+		data->grph.window_width - data->grph.map_width - data->grph.padding,
+		data->grph.window_height - data->grph.map_height - data->grph.padding);
+}
+
+static void	render_3D(t_grph *grph, t_data *data)
+{
+	double	distances[60];
+	int		i;
+	int		num_rays;
+	double	ray_angle;
+	double	angle_step;
+
+	num_rays = 60;
+	angle_step = PI / 180.0;
+	ray_angle = grph->dir.angle - (30.0 * PI / 180.0);
+	i = 0;
+	while (i < num_rays)
+	{
+		ray_angle += angle_step;
+		distances[i] = cast_ray(grph, data, ray_angle);
+		printf("%d: %f\n", i, distances[i]);
+		i++;
+	}
+}
+
+static double cast_ray(t_grph *grph, t_data *data, double ray_angle)
+{
+	double	distance;
+	double	step;
+	double	x;
+	double	y;
+
+	distance = 0;
+	step = 0.1;
+	x = grph->pl.x;
+	y = grph->pl.y;
+	while (distance < 1000)
+	{
+		if (data->map.map[(int)y][(int)x] == '1'
+				|| data->map.map[(int)y][(int)x] == '\\')
+			break ;
+		x += cos(ray_angle) * step;
+		y += sin(ray_angle) * step;
+		distance += step;
+	}
+	return (distance);
 }
 
 static void	render_map2D(t_grph *grph, t_data *data)
@@ -55,9 +105,6 @@ static void	render_map2D(t_grph *grph, t_data *data)
 	}
 	draw_player(grph);
 	draw_rays(grph, data);
-	mlx_put_image_to_window(grph->mlx, grph->win, grph->img.img,
-		grph->window_width - grph->map_width - grph->padding,
-		grph->window_height - grph->map_height - grph->padding);
 }
 
 int	put_pixel(t_img *img, int x, int y, uint32_t color)
