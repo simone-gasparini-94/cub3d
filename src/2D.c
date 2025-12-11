@@ -11,17 +11,17 @@ void	render_map2D(t_grph *grph, t_data *data)
 	int		j;
 
 	i = 0;
-	while (i < grph->map_height) 
+	while (i < grph->mini.height) 
 	{
 		j = 0;
-		while (j < grph->map_width)
+		while (j < grph->mini.width)
 		{
 			if ((j / grph->tile_size) < (int)data->map.cols && data->map.map[i
 				/ grph->tile_size][j / grph->tile_size] == '1')
-				put_pixel(&grph->img, grph->map_x + j, grph->map_y + i, 0xFFFFFF, grph);
+				put_pixel(&grph->img, grph->mini.x + j, grph->mini.y + i, 0xFFFFFF, grph);
 			else if ((j / grph->tile_size) < (int)data->map.cols 
 			&& data->map.map[i / grph->tile_size][j / grph->tile_size] == '\\')
-				put_pixel(&grph->img, grph->map_x + j, grph->map_y + i, 0x8E008E, grph);
+				put_pixel(&grph->img, grph->mini.x + j, grph->mini.y + i, 0x8E008E, grph);
 			j++;
 		}
 		i++;
@@ -61,10 +61,10 @@ static void draw_single_ray(t_grph *grph, t_data *data, double ray_angle)
         x = grph->pl.x_grph + cos(ray_angle) * i;
         y = grph->pl.y_grph + sin(ray_angle) * i;
         
-        if (x >= 0 && x < grph->map_width && y >= 0 && grph->map_height
+        if (x >= 0 && x < grph->mini.width && y >= 0 && grph->mini.height
                 && data->map.map[y / grph->tile_size][x / grph->tile_size] != '1'
                 && data->map.map[y / grph->tile_size][x / grph->tile_size] != '\\')
-            put_pixel(&grph->img, grph->map_x + x, grph->map_y + y, 0x00FF00, grph);
+            put_pixel(&grph->img, grph->mini.x + x, grph->mini.y + y, 0x00FF00, grph);
         else
             break;
         i++;
