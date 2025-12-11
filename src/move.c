@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:54:08 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/11 16:05:41 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/11 16:42:28 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,17 @@ static void	move_forward(t_data *data)
 	int	x;
 	int	y;
 
-	data->grph.speed = 0.20;
-	x = (int)(data->grph.pl.x + cos(data->grph.dir.angle) * data->grph.speed);
-	y = (int)(data->grph.pl.y + sin(data->grph.dir.angle) * data->grph.speed);
+	data->grph.speed = 0.12;
+	x = (int)(data->grph.pl.x + cos(data->grph.dir.angle)
+			* data->grph.speed * data->grph.multi);
+	y = (int)(data->grph.pl.y + sin(data->grph.dir.angle)
+			* data->grph.speed * data->grph.multi);
 	if (data->map.map[y][x] != '1' && data->map.map[y][x] != '\\')
 	{
-		data->grph.pl.x += cos(data->grph.dir.angle) * MOVEMENT;
-		data->grph.pl.y += sin(data->grph.dir.angle) * MOVEMENT;
+		data->grph.pl.x += cos(data->grph.dir.angle)
+			* data->grph.speed * data->grph.multi;
+		data->grph.pl.y += sin(data->grph.dir.angle)
+			* data->grph.speed * data->grph.multi;
 		data->grph.pl.x_grph = data->grph.pl.x * data->grph.tile_size;
 		data->grph.pl.y_grph = data->grph.pl.y * data->grph.tile_size;
 	}

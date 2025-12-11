@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:55:43 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/10 09:46:25 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/11 16:30:11 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ int	main(int argc, char *argv[])
 	{
 		mlx_hook(data->grph.win, DestroyNotify, 0, &quit, data);
 		mlx_hook(data->grph.win, KeyPress, KeyPressMask, 
-			&handle_events, data);
+			&handle_keypress, data);
+		mlx_hook(data->grph.win, KeyRelease, KeyReleaseMask, 
+			&handle_keyrelease, data);
 		render(data);
 		mlx_loop(data->grph.mlx);
 		//clean_mlx

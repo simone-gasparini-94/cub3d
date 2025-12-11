@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 11:45:27 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/09 11:10:48 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/11 16:40:05 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 #include <math.h>
 #include <mlx.h>
 #include <X11/keysym.h>
+#include <X11/X.h>
 
-static void	toggle_door(t_data *data);
+void	toggle_door(t_data *data);
 
-int	handle_events(int keysym, t_data *data)
+int	handle_keypress(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 		quit(data);
@@ -32,6 +33,15 @@ int	handle_events(int keysym, t_data *data)
 		turn(keysym, data);
 	if (keysym == XK_space)
 		toggle_door(data);
+	if (keysym == XK_Shift_L)
+		data->grph.multi = 2.0;
+	return (0);
+}
+
+int	handle_keyrelease(int keysym, t_data *data)
+{
+	if (keysym == XK_Shift_L)
+		data->grph.multi = 1.0;
 	return (0);
 }
 
@@ -41,7 +51,7 @@ int	quit(t_data *data)
 	return (0);
 }
 
-static void	toggle_door(t_data *data)
+void	toggle_door(t_data *data)
 {
 	int	x;
 	int	y;

@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:14:15 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/11 12:49:53 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/11 16:10:20 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static void	init_graphic_values(t_data *data, t_grph *grph)
 	grph->mini.padding = grph->window_height / 16;
 	grph->mini.x = grph->window_width - grph->mini.width - grph->mini.padding;
 	grph->mini.y = grph->window_height - grph->mini.height - grph->mini.padding;
+	grph->multi = 1.0;
 }
 
 int	init_mlx_images(t_data *data)
