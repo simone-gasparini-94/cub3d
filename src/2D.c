@@ -3,8 +3,33 @@
 #include <stdio.h>
 
 static void draw_single_ray(t_grph *grph, t_data *data, double ray_angle);
+static void	draw_rays(t_grph *grph, t_data *data);
 
-void	draw_rays(t_grph *grph, t_data *data)
+void	render_map2D(t_grph *grph, t_data *data)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < grph->map_height) 
+	{
+		j = 0;
+		while (j < grph->map_width)
+		{
+			if ((j / grph->tile_size) < (int)data->map.cols && data->map.map[i
+				/ grph->tile_size][j / grph->tile_size] == '1')
+				put_pixel(&grph->img, grph->map_x + j, grph->map_y + i, 0xFFFFFF, grph);
+			else if ((j / grph->tile_size) < (int)data->map.cols 
+			&& data->map.map[i / grph->tile_size][j / grph->tile_size] == '\\')
+				put_pixel(&grph->img, grph->map_x + j, grph->map_y + i, 0x8E008E, grph);
+			j++;
+		}
+		i++;
+	}
+	draw_rays(grph, data);
+}
+
+static void	draw_rays(t_grph *grph, t_data *data)
 {
 	int		i;
 	int		num_rays;

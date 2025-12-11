@@ -5,6 +5,8 @@ INCS		=	-Iinc											\
 SRC_DIR		=	src
 OBJ_DIR		=	build
 SRCS		=	main.c											\
+				2D.c											\
+				3D.c											\
 				areas.c											\
 				color.c											\
 				data.c											\
@@ -17,7 +19,6 @@ SRCS		=	main.c											\
 				move.c											\
 				parse.c											\
 				print.c											\
-				raycast.c										\
 				render.c										\
 				str_utils.c										\
 				texture.c										\

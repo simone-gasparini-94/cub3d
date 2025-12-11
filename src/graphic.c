@@ -55,11 +55,11 @@ static void	init_graphic_values(t_data *data, t_grph *grph)
 	grph->window_width = 1080;
 	grph->window_height = 720;
 	grph->tile_size = 4;
-	grph->map_width = data->map.cols * grph->tile_size;
-	grph->map_height = data->map.rows * grph->tile_size;
-	grph->padding = grph->window_height / 16;
-	grph->map_x = grph->window_width - grph->map_width - grph->padding;
-	grph->map_y = grph->window_height - grph->map_height - grph->padding;
+	grph->mini.width = data->map.cols * grph->tile_size;
+	grph->mini.height = data->map.rows * grph->tile_size;
+	grph->mini.padding = grph->window_height / 16;
+	grph->mini.x = grph->window_width - grph->mini.width - grph->mini.padding;
+	grph->mini.y = grph->window_height - grph->mini.height - grph->mini.padding;
 }
 
 int	init_mlx_images(t_data *data)
