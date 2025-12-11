@@ -13,10 +13,11 @@ void	draw_rays(t_grph *grph, t_data *data)
 
 	num_rays = 60;
 	angle_step = PI / 180.0;
+	ray_angle = grph->dir.angle - (30.0 * PI / 180.0);
 	i = 0;
 	while (i < num_rays)
 	{
-		ray_angle = grph->dir.angle - (30.0 * PI / 180.0) + (angle_step * i);
+		ray_angle += angle_step;
 		draw_single_ray(grph, data, ray_angle);
 		i++;
 	}
