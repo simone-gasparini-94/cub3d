@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:14:15 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/10 15:32:09 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/11 12:49:53 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 #include <math.h>
 
 static int	init_mlx_images(t_data *data);
-static void	init_graphic_values(t_data *data);
+static void	init_graphic_values(t_data *data, t_grph *grph);
 static void	set_player_angle(t_data *data);
 
 int	init_mlx(t_data *data)
 {
-	init_graphic_values(data);
+	init_graphic_values(data, &data->grph);
 	set_player_angle(data);
 	data->grph.mlx = mlx_init();
 	if (data->grph.mlx == NULL)
@@ -48,16 +48,18 @@ int	init_mlx(t_data *data)
 	return (0);
 }
 
-static void	init_graphic_values(t_data *data)
+static void	init_graphic_values(t_data *data, t_grph *grph)
 {
-	data->grph.texture_width = 256;
-	data->grph.texture_height = 256;
-	data->grph.window_width = 1080;
-	data->grph.window_height = 720;
-	data->grph.tile_size = 4;
-	data->grph.map_width = data->map.cols * data->grph.tile_size;
-	data->grph.map_height = data->map.rows * data->grph.tile_size;
-	data->grph.padding = data->grph.window_height / 16;
+	grph->texture_width = 256;
+	grph->texture_height = 256;
+	grph->window_width = 1080;
+	grph->window_height = 720;
+	grph->tile_size = 4;
+	grph->map_width = data->map.cols * grph->tile_size;
+	grph->map_height = data->map.rows * grph->tile_size;
+	grph->padding = grph->window_height / 16;
+	grph->map_x = grph->window_width - grph->map_width - grph->padding;
+	grph->map_y = grph->window_height - grph->map_height - grph->padding;
 }
 
 int	init_mlx_images(t_data *data)

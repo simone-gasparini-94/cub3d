@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 10:13:44 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/11 12:37:18 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/11 12:55:04 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,10 @@ static void	render_map2D(t_grph *grph, t_data *data)
 		{
 			if ((j / grph->tile_size) < (int)data->map.cols && data->map.map[i
 				/ grph->tile_size][j / grph->tile_size] == '1')
-				put_pixel(&grph->img, j, i, 0xFFFFFF, grph);
+				put_pixel(&grph->img, grph->map_x + j, grph->map_y + i, 0xFFFFFF, grph);
 			else if ((j / grph->tile_size) < (int)data->map.cols 
 			&& data->map.map[i / grph->tile_size][j / grph->tile_size] == '\\')
-				put_pixel(&grph->img, j, i, 0x8F008F, grph);
+				put_pixel(&grph->img, grph->map_x + j, grph->map_y + i, 0x8E008E, grph);
 			j++;
 		}
 		i++;
@@ -153,7 +153,7 @@ static void	draw_player(t_grph *grph)
 		{
 			if ((x - pl.x) * (x - pl.x) + (y - pl.y) * (y
 					- pl.y) <= player_size * player_size)
-				put_pixel(&grph->img, x, y, 0xFF0000, grph);
+				put_pixel(&grph->img, grph->map_x + x, grph->map_y, 0xFF0000, grph);
 			x++;
 		}
 		y++;
