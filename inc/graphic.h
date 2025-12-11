@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 10:30:54 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/11 12:51:20 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/11 16:03:21 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_grph
 	int		texture_height;
 	int		tile_size;
 	double	*distances;
+	double	speed;
 }			t_grph;
 
 int			init_mlx(t_data *data);
