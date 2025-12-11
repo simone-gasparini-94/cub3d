@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 10:30:54 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/10 14:44:57 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/11 12:14:33 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ typedef struct s_grph
 int			init_mlx(t_data *data);
 void		render(t_data *data);
 void		draw_rays(t_grph *grph, t_data *data);
-int			put_pixel(t_img *img, int x, int y, uint32_t color);
+int			put_pixel(t_img *img, int x, int y, uint32_t color, t_grph *grph);
 
 #endif
