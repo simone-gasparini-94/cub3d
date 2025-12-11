@@ -6,7 +6,7 @@
 /*   By: sgaspari <sgaspari@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 10:13:44 by sgaspari          #+#    #+#             */
-/*   Updated: 2025/12/11 12:34:03 by sgaspari         ###   ########.fr       */
+/*   Updated: 2025/12/11 12:37:18 by sgaspari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ static double cast_ray(t_grph *grph, t_data *data, double ray_angle);
 
 void	render(t_data *data)
 {
+	if (data->grph.img.img != NULL)
+		mlx_destroy_image(data->grph.mlx, data->grph.img.img);
+	data->grph.img.img = mlx_new_image(data->grph.mlx, data->grph.window_width,
+			data->grph.window_height);
+	data->grph.img.addr = mlx_get_data_addr(data->grph.img.img,
+			&data->grph.img.bpp, &data->grph.img.line_l,
+			&data->grph.img.endian);
 	render_3D(&data->grph, data);
 	render_map2D(&data->grph, data);
 	mlx_put_image_to_window(data->grph.mlx, data->grph.win, data->grph.img.img,
@@ -43,13 +50,6 @@ static void	render_3D(t_grph *grph, t_data *data)
 	int		wall_top;
 	int		wall_bottom;
 
-	if (grph->img.img != NULL)
-		mlx_destroy_image(grph->mlx, grph->img.img);
-	grph->img.img = mlx_new_image(grph->mlx, grph->window_width,
-			grph->window_height);
-	grph->img.addr = mlx_get_data_addr(grph->img.img,
-			&grph->img.bpp, &grph->img.line_l,
-			&grph->img.endian);
 	num_rays = grph->window_width;
 	distances = malloc(sizeof(double) * num_rays);
 	angle_step = (60.0 * PI / 180.0) / num_rays;
