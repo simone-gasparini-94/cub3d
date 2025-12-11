@@ -39,7 +39,7 @@ static void draw_single_ray(t_grph *grph, t_data *data, double ray_angle)
         if (x >= 0 && x < grph->map_width && y >= 0 && grph->map_height
                 && data->map.map[y / grph->tile_size][x / grph->tile_size] != '1'
                 && data->map.map[y / grph->tile_size][x / grph->tile_size] != '\\')
-            put_pixel(&grph->img, x, y, 0x00FF00); // Green rays
+            put_pixel(&grph->img, x, y, 0x00FF00);
         else
             break;
         i++;
